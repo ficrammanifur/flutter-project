@@ -78,5 +78,11 @@ cd "Asistant Penjadwalan/frontend"  # atau Pilates Member/frontend
 flutter pub get
 flutter run
 
-Keamanan
-File rahasia seperti firebase-adminsdk.json tidak disertakan di repository. Pastikan file tersebut ada secara lokal untuk kebutuhan development.
+🔒 Catatan Keamanan
+File konfigurasi sensitif seperti firebase-adminsdk.json tidak termasuk dalam repository ini. Pastikan untuk:
+
+Menyimpan file tersebut secara lokal
+
+Menambahkannya ke .gitignore
+
+Tidak mengunggahnya ke repositori publik
