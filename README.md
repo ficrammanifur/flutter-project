@@ -1,7 +1,9 @@
 # 📦 Flutter Project – Skripsi Ficram Manifur Farissa
 
 <p align="center">
-  <img src="logo.png" alt="Project Logo" width="120" />
+  <!-- Replace logo.png with your actual logo file -->
+  <img src="assets/logo.png" alt="Project Logo" width="200" />
+  <p align="center">(Project Logo)</p>
 </p>
 
 <p align="center">
@@ -14,31 +16,36 @@
 
 ---
 
-## � **Flowchart Project**
+## 📊 **Flowchart Project**
 
 <p align="center">
-  <img src="flowchart.png" alt="Flowchart Project" width="500" />
+  <!-- Replace flowchart.png with your actual flowchart file -->
+  <img src="assets/flowchart.png" alt="Flowchart Project" width="600" />
+  <p align="center">(Diagram alur sistem)</p>
 </p>
 
-*(Placeholder: tambahkan file flowchart.png jika sudah ada)*
+*Pastikan untuk menambahkan file flowchart.png di folder assets jika belum ada*
 
 ---
 
-## 🇮🇩 **Deskripsi Singkat (Bahasa Indonesia)**
+## 📂 **Struktur Project**
 
-### 📂 Struktur Project
+```plaintext
 flutter-project/
-├── Asistant Penjadwalan/
-│ ├── backend/ # REST API backend (Python Flask)
-│ └── frontend/ # Flutter frontend
+├── Asistant_Penjadwalan/       # Project Assistant Penjadwalan
+│   ├── backend/               # REST API backend (Python Flask)
+│   └── frontend/              # Flutter frontend
 │
-├── Pilates Member/
-│ ├── backend/ # REST API backend (Python Flask)
-│ └── frontend/ # Flutter frontend
+├── Pilates_Member/            # Project Pilates Member
+│   ├── backend/               # REST API backend (Python Flask)
+│   └── frontend/              # Flutter frontend
 │
-├── README.md
-└── .gitignore
-
+├── assets/                    # Folder untuk gambar/asset
+│   ├── logo.png               # Logo project
+│   └── flowchart.png          # Diagram alur
+│
+├── README.md                  # Dokumentasi ini
+└── .gitignore                 # File ignore untuk Git
 ---
 
 ## 🚀 **Fitur Utama**
