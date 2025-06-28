@@ -1,8 +1,6 @@
 # 📦 Flutter Project – Skripsi Ficram Manifur Farissa
 
 <p align="center">
-  <!-- Replace logo.png with your actual logo file -->
-  <img src="assets/logo.png" alt="Project Logo" width="200" />
   <p align="center">(Project Logo)</p>
 </p>
 
@@ -19,8 +17,6 @@
 ## 📊 **Flowchart Project**
 
 <p align="center">
-  <!-- Replace flowchart.png with your actual flowchart file -->
-  <img src="assets/flowchart.png" alt="Flowchart Project" width="600" />
   <p align="center">(Diagram alur sistem)</p>
 </p>
 
