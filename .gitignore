@@ -1,0 +1,17 @@
+*.hprof
+build/
+.dart_tool/
+.packages
+.pub-cache/
+.flutter-plugins
+.flutter-plugins-dependencies
+.melos_tool/
+pubspec.lock
+.vscode/
+.idea/
+*.iml
+*.log
+*.tmp
+*.DS_Store
+# Firebase secrets
+firebase-adminsdk.json
