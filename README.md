@@ -1,4 +1,4 @@
-# 📦 Flutter Project – Skripsi Ficram Manifur Farissa
+# 📦 Flutter Project – Ficram Manifur Farissa
 
 <p align="center">
   <p align="center">(Project Logo)</p>
