@@ -2,9 +2,6 @@
   📦 Flutter Project – Ficram Manifur Farissa
 </h1>
 
-<p align="center">
-  <img src="/placeholder.svg?height=150&width=150" alt="Project Logo" />
-</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-v3.x-blue?logo=flutter" alt="Flutter" />
@@ -20,11 +17,6 @@
 
 ## 📊 Flowchart Project
 
-<p align="center">
-  <img src="/placeholder.svg?height=300&width=600" alt="System Flowchart Diagram" />
-  <br>
-  <i>(Pastikan untuk menambahkan file flowchart.png di folder assets jika belum ada)</i>
-</p>
 
 ---
 
