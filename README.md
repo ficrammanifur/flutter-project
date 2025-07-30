@@ -11,7 +11,7 @@
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License" />
 </p>
 
-> 🔧 Proyek skripsi Teknik Elektro: **Asistant Penjadwalan** & **Pilates Member**, dibuat dengan **Flutter** (frontend) dan **Python Flask** (backend).
+> 🔧 Proyek : **Asistant Penjadwalan** & **Pilates Member**, dibuat dengan **Flutter** (frontend) dan **Python Flask** (backend).
 
 ---
 
