@@ -111,47 +111,212 @@ flutter build apk
 
 ## 📡 API Endpoints Structure
 
-### 🔄 GET REST API Flow Diagram
+### 🔄 GET REST API Flow Diagram - ARIMA Analytics
 
 ```mermaid
 graph TD
-    A["📱 Flutter App"]  B["🔄 API Service Call"]
-    B  C["📡 HTTP GET Request"]
-    C  D["🌐 Network Layer"]
-    D  E["🔍 Check Network Connection"]
+    A["📱 Flutter App"] --> B["🔄 API Service Call"]
+    B --> C["📡 HTTP GET Request"]
+    C --> D["🌐 Network Layer"]
+    D --> E["🔍 Check Network Connection"]
     
-    E |"✅ Connected"| F["📤 Send Request to Server"]
-    E |"❌ No Connection"| G["⚠️ Network Error"]
+    E -->|"✅ Connected"| F["📤 Send Request to Server"]
+    E -->|"❌ No Connection"| G["⚠️ Network Error"]
     
-    F  H["🖥️ Flask Backend Server"]
-    H  I["🛡️ Request Validation"]
+    F --> H["🖥️ Flask Backend Server"]
+    H --> I["🛡️ Request Validation"]
     
-    I |"✅ Valid"| J["📊 Process Request"]
-    I |"❌ Invalid"| K["🚫 400 Bad Request"]
+    I -->|"✅ Valid"| J["📊 Process Request"]
+    I -->|"❌ Invalid"| K["🚫 400 Bad Request"]
     
-    J  L["💾 Data Processing"]
-    L  M["📈 Generate Response Data"]
-    M  N["📦 JSON Response"]
+    J --> L["💾 Data Processing"]
+    L --> M["📈 Generate Response Data"]
+    M --> N["📦 JSON Response"]
     
-    N  O["📡 HTTP Response"]
-    O  P["📱 Flutter Receives Response"]
+    N --> O["📡 HTTP Response"]
+    O --> P["📱 Flutter Receives Response"]
     
-    P  Q["🔍 Status Code Check"]
+    P --> Q["🔍 Status Code Check"]
     
-    Q |"200 OK"| R["✅ Parse JSON Data"]
-    Q |"4xx/5xx Error"| S["❌ Handle Error"]
+    Q -->|"200 OK"| R["✅ Parse JSON Data"]
+    Q -->|"4xx/5xx Error"| S["❌ Handle Error"]
     
-    R  T["🔄 Update UI State"]
-    T  U["📱 Display Data to User"]
+    R --> T["🔄 Update UI State"]
+    T --> U["📱 Display Data to User"]
     
-    S  V["📱 Show Error Message"]
-    G  V
-    K  V
+    S --> V["📱 Show Error Message"]
+    G --> V
+    K --> V
     
-    V  W["🔄 Retry Option"]
-    W  B
+    V --> W["🔄 Retry Option"]
+    W --> B
     
     style A fill:#e1f5fe
     style H fill:#f3e5f5
     style U fill:#e8f5e8
     style V fill:#ffebee
+```
+
+## Detailed API Flow Steps:
+
+### 1. **Client Side (Flutter App)**
+// 1. User Action Triggers API Call
+Future<Map<String, dynamic>> getDashboardData() async {
+  try {
+    // 2. Create HTTP GET Request
+    final response = await http.get(
+      Uri.parse('$baseUrl/dashboard'),
+      headers: {'Content-Type': 'application/json'},
+    );
+    
+    // 3. Check Response Status
+    if (response.statusCode == 200) {
+      // 4. Parse JSON Response
+      return json.decode(response.body);
+    }
+    throw Exception('Failed to load data');
+  } catch (e) {
+    // 5. Handle Errors
+    return _getMockData();
+  }
+}
+
+### 2. **Server Side (Flask Backend)**
+```
+@app.route('/api/dashboard', methods=['GET'])
+def get_dashboard_data():
+    try:
+        # 1. Validate Request
+        # 2. Process Business Logic
+        # 3. Fetch/Calculate Data
+        # 4. Format Response
+        return jsonify({
+            "success": True,
+            "data": dashboard_stats
+        })
+    except Exception as e:
+        # 5. Handle Server Errors
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+```
+## Specific API Endpoints Flow:
+
+```mermaid
+graph LR
+    A["📱 Flutter App"] --> B["🎯 API Endpoints"]
+    
+    B --> C["📊 GET /api/dashboard"]
+    B --> D["🔮 POST /api/prediction"]  
+    B --> E["📦 GET /api/materials"]
+    
+    C --> F["📈 Dashboard Stats"]
+    D --> G["🤖 ARIMA Results"]
+    E --> H["📋 Stock Data"]
+    
+    F --> I["📱 Dashboard Screen"]
+    G --> J["📱 Prediction Screen"]
+    H --> K["📱 Materials Screen"]
+    
+    style C fill:#e3f2fd
+    style D fill:#f3e5f5
+    style E fill:#e8f5e8
+```
+
+## HTTP Status Codes Flow:
+
+```mermaid
+graph TD
+    A["📡 HTTP Response"] --> B["🔍 Status Code Check"]
+    
+    B --> C["✅ 200 OK"]
+    B --> D["❌ 400 Bad Request"]
+    B --> E["🔒 401 Unauthorized"]
+    B --> F["🚫 404 Not Found"]
+    B --> G["💥 500 Server Error"]
+    
+    C --> H["📊 Process Data"]
+    D --> I["⚠️ Validation Error"]
+    E --> J["🔐 Authentication Required"]
+    F --> K["❓ Endpoint Not Found"]
+    G --> L["🛠️ Server Issue"]
+    
+    H --> M["📱 Update UI"]
+    I --> N["📝 Show Form Errors"]
+    J --> O["🔑 Redirect to Login"]
+    K --> P["🔄 Check URL"]
+    L --> Q["🔄 Retry Later"]
+    
+    style C fill:#c8e6c9
+    style D fill:#ffcdd2
+    style E fill:#ffe0b2
+    style F fill:#f8bbd9
+    style G fill:#ffcdd2
+```
+
+## Error Handling Flow:
+
+```mermaid
+API Error Handling Strategy
+graph TD
+    A["🚨 Error Occurred"] --> B["🔍 Error Type Check"]
+    
+    B --> C["🌐 Network Error"]
+    B --> D["📡 HTTP Error"]
+    B --> E["📊 Data Parse Error"]
+    B --> F["⏱️ Timeout Error"]
+    
+    C --> G["📱 Show Offline Mode"]
+    D --> H["📝 Show Error Message"]
+    E --> I["🔄 Use Mock Data"]
+    F --> J["🔄 Retry Request"]
+    
+    G --> K["💾 Use Cached Data"]
+    H --> L["🔄 Retry Option"]
+    I --> M["📱 Continue with Fallback"]
+    J --> N["⏳ Show Loading"]
+    
+    style A fill:#ffcdd2
+    style G fill:#fff3e0
+    style I fill:#e8f5e8
+```
+
+Implementation Example:
+
+class ApiService {
+  static Future<Map<String, dynamic>> getDashboardData() async {
+    try {
+      // 1. Network Check
+      final response = await http.get(
+        Uri.parse('$baseUrl/dashboard'),
+        headers: {'Content-Type': 'application/json'},
+      ).timeout(Duration(seconds: 30));
+      
+      // 2. Status Code Handling
+      switch (response.statusCode) {
+        case 200:
+          return json.decode(response.body);
+        case 400:
+          throw BadRequestException('Invalid request');
+        case 401:
+          throw UnauthorizedException('Authentication required');
+        case 404:
+          throw NotFoundException('Endpoint not found');
+        case 500:
+          throw ServerException('Server error');
+        default:
+          throw Exception('Unknown error: ${response.statusCode}');
+      }
+    } on SocketException {
+      // 3. Network Error
+      return _getMockDashboardData();
+    } on TimeoutException {
+      // 4. Timeout Error
+      throw TimeoutException('Request timeout');
+    } catch (e) {
+      // 5. General Error
+      throw Exception('Failed to load data: $e');
+    }
+  }
+}
