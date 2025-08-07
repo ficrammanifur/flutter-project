@@ -160,6 +160,7 @@ graph TD
 ## Detailed API Flow Steps:
 
 ### 1. **Client Side (Flutter App)**
+```
 // 1. User Action Triggers API Call
 Future<Map<String, dynamic>> getDashboardData() async {
   try {
@@ -180,6 +181,7 @@ Future<Map<String, dynamic>> getDashboardData() async {
     return _getMockData();
   }
 }
+```
 
 ### 2. **Server Side (Flask Backend)**
 ```
@@ -201,6 +203,7 @@ def get_dashboard_data():
             "error": str(e)
         }), 500
 ```
+
 ## Specific API Endpoints Flow:
 ### ARIMA Analytics API Endpoints Flow
 ```mermaid
@@ -280,9 +283,10 @@ graph TD
     style G fill:#fff3e0
     style I fill:#e8f5e8
 ```
+---
 
-Implementation Example:
-
+## Implementation Example:
+```
 class ApiService {
   static Future<Map<String, dynamic>> getDashboardData() async {
     try {
@@ -319,3 +323,4 @@ class ApiService {
     }
   }
 }
+```
