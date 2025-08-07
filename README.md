@@ -1,4 +1,70 @@
-[V0_FILE]markdown:file="backend/README.md" type="markdown" isMerged="true"
+<h1 align="center">🚀 Multi-App Development Suite</h1>
+<h2 align="center">Ficram Manifur Farissa</h2>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Flutter-3.x-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter" />
+  <img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/Flask-2.0+-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask" />
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
+  <img src="https://img.shields.io/badge/XAMPP-FB7A24?style=for-the-badge&logo=xampp&logoColor=white" alt="XAMPP" />
+</p>
+
+<p align="center">
+  <strong>🔧 3 Aplikasi Lengkap: Assistant Penjadwalan, PastryStock & Pilates Member</strong><br>
+  Dibuat dengan <strong>Flutter</strong> (frontend) dan <strong>Python Flask</strong> (backend)
+</p>
+
+<p align="center">
+  <a href="#-aplikasi-overview">Aplikasi</a> •
+  <a href="#-cara-menjalankan">Instalasi</a> •
+  <a href="#-database-setup">Database</a> •
+  <a href="#-teknologi">Teknologi</a> •
+  <a href="#-troubleshooting">Troubleshooting</a>
+</p>
+
+---
+
+## 📊 Arsitektur Multi-App
+
+```mermaid
+graph TB
+    subgraph "Frontend Layer - Flutter Mobile Apps"
+        A1[Assistant Penjadwalan]
+        A2[PastryStock Management]
+        A3[Pilates Member]
+    end
+    
+    subgraph "Backend Layer - Flask APIs"
+        B1[Schedule API<br/>Python Flask]
+        B2[PastryStock API<br/>Python Flask + ARIMA]
+        B3[Pilates API<br/>Python Flask]
+    end
+    
+    subgraph "Database Layer"
+        C1[XAMPP MySQL<br/>Local Database]
+        C2[Firebase Realtime DB<br/>Cloud Database]
+        C3[Firebase Realtime DB<br/>Cloud Database]
+    end
+    
+    A1  B1
+    A2  B2
+    A3  B3
+    
+    B1  C1
+    B2  C2
+    B3  C3
+    
+    style A1 fill:#4CAF50,stroke:#fff,color:#fff
+    style A2 fill:#FF9800,stroke:#fff,color:#fff
+    style A3 fill:#9C27B0,stroke:#fff,color:#fff
+    style B1 fill:#2196F3,stroke:#fff,color:#fff
+    style B2 fill:#FF5722,stroke:#fff,color:#fff
+    style B3 fill:#E91E63,stroke:#fff,color:#fff
+    style C1 fill:#00BCD4,stroke:#fff,color:#fff
+    style C2 fill:#FFCA28,stroke:#000,color:#000
+    style C3 fill:#FFCA28,stroke:#000,color:#000
+
 # PastryStock Backend API
 
 <p align="center">
@@ -715,7 +781,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Made with ❤️ for the bakery community
 
 </div>
-[V0_FILE]markdown:file="frontend/README.md" type="markdown" isMerged="true"
 # PastryStock Frontend - Flutter Mobile App
 
 <p align="center">
@@ -1892,7 +1957,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Made with ❤️ using Flutter
 
 </div>
-[V0_FILE]sql:file="database/schema.sql" type="code" isMerged="true"
+
 -- PastryStock Database Schema
 -- Firebase Realtime Database SQL Equivalent
 
@@ -4252,70 +4317,3 @@ Get available Pilates classes.
   ]
 }
 ```
-[V0_FILE]markdown:file="README.md" type="markdown" isEdit="true"
-<h1 align="center">🚀 Multi-App Development Suite</h1>
-<h2 align="center">Ficram Manifur Farissa</h2>
-
-<p align="center">
-  <img src="https://img.shields.io/badge/Flutter-3.x-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter" />
-  <img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-  <img src="https://img.shields.io/badge/Flask-2.0+-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask" />
-  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
-  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
-  <img src="https://img.shields.io/badge/XAMPP-FB7A24?style=for-the-badge&logo=xampp&logoColor=white" alt="XAMPP" />
-</p>
-
-<p align="center">
-  <strong>🔧 3 Aplikasi Lengkap: Assistant Penjadwalan, PastryStock & Pilates Member</strong><br>
-  Dibuat dengan <strong>Flutter</strong> (frontend) dan <strong>Python Flask</strong> (backend)
-</p>
-
-<p align="center">
-  <a href="#-aplikasi-overview">Aplikasi</a> •
-  <a href="#-cara-menjalankan">Instalasi</a> •
-  <a href="#-database-setup">Database</a> •
-  <a href="#-teknologi">Teknologi</a> •
-  <a href="#-troubleshooting">Troubleshooting</a>
-</p>
-
----
-
-## 📊 Arsitektur Multi-App
-
-```mermaid
-graph TB
-    subgraph "Frontend Layer - Flutter Mobile Apps"
-        A1[Assistant Penjadwalan]
-        A2[PastryStock Management]
-        A3[Pilates Member]
-    end
-    
-    subgraph "Backend Layer - Flask APIs"
-        B1[Schedule API<br/>Python Flask]
-        B2[PastryStock API<br/>Python Flask + ARIMA]
-        B3[Pilates API<br/>Python Flask]
-    end
-    
-    subgraph "Database Layer"
-        C1[XAMPP MySQL<br/>Local Database]
-        C2[Firebase Realtime DB<br/>Cloud Database]
-        C3[Firebase Realtime DB<br/>Cloud Database]
-    end
-    
-    A1  B1
-    A2  B2
-    A3  B3
-    
-    B1  C1
-    B2  C2
-    B3  C3
-    
-    style A1 fill:#4CAF50,stroke:#fff,color:#fff
-    style A2 fill:#FF9800,stroke:#fff,color:#fff
-    style A3 fill:#9C27B0,stroke:#fff,color:#fff
-    style B1 fill:#2196F3,stroke:#fff,color:#fff
-    style B2 fill:#FF5722,stroke:#fff,color:#fff
-    style B3 fill:#E91E63,stroke:#fff,color:#fff
-    style C1 fill:#00BCD4,stroke:#fff,color:#fff
-    style C2 fill:#FFCA28,stroke:#000,color:#000
-    style C3 fill:#FFCA28,stroke:#000,color:#000
