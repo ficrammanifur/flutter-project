@@ -1,4 +1,4 @@
-<h1 align="center"> # 🧘 Pilates Member Backend API
+<h1 align="center"> 🧘 Pilates Member Backend API
 
 <p align="center">
   <img src="https://img.shields.io/badge/Flask-2.3+-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask" />
