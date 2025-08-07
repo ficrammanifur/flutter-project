@@ -1,0 +1,66 @@
+[
+  {
+    "id": "1",
+    "name": "Keju",
+    "currentStock": 1500,
+    "unit": "gram",
+    "dailyUsage": 200,
+    "daysRemaining": 7
+  },
+  {
+    "id": "2",
+    "name": "Susu UHT Greenfields",
+    "currentStock": 3000,
+    "unit": "ml",
+    "dailyUsage": 500,
+    "daysRemaining": 6
+  },
+  {
+    "id": "3",
+    "name": "Creamer",
+    "currentStock": 800,
+    "unit": "gram",
+    "dailyUsage": 100,
+    "daysRemaining": 8
+  },
+  {
+    "id": "4",
+    "name": "Gula",
+    "currentStock": 2500,
+    "unit": "gram",
+    "dailyUsage": 300,
+    "daysRemaining": 8
+  },
+  {
+    "id": "5",
+    "name": "Dark Cokelat",
+    "currentStock": 600,
+    "unit": "gram",
+    "dailyUsage": 150,
+    "daysRemaining": 4
+  },
+  {
+    "id": "6",
+    "name": "Yogurt",
+    "currentStock": 1200,
+    "unit": "ml",
+    "dailyUsage": 200,
+    "daysRemaining": 6
+  },
+  {
+    "id": "7",
+    "name": "Matcha Bubuk",
+    "currentStock": 300,
+    "unit": "gram",
+    "dailyUsage": 50,
+    "daysRemaining": 6
+  },
+  {
+    "id": "8",
+    "name": "Earl Grey",
+    "currentStock": 200,
+    "unit": "gram",
+    "dailyUsage": 30,
+    "daysRemaining": 6
+  }
+]

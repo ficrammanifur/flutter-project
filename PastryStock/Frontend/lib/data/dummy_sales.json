@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "menuName": "Madaline",
+    "quantity": 12,
+    "pricePerUnit": 45000,
+    "totalAmount": 540000,
+    "date": "2025-06-05T08:12:00Z"
+  },
+  {
+    "id": "2",
+    "menuName": "Muffin",
+    "quantity": 15,
+    "pricePerUnit": 35000,
+    "totalAmount": 525000,
+    "date": "2025-06-14T11:47:00Z"
+  },
+  {
+    "id": "3",
+    "menuName": "Cheesecake",
+    "quantity": 8,
+    "pricePerUnit": 75000,
+    "totalAmount": 600000,
+    "date": "2025-06-22T15:25:00Z"
+  },
+  {
+    "id": "4",
+    "menuName": "Mini Muffin",
+    "quantity": 20,
+    "pricePerUnit": 17000,
+    "totalAmount": 340000,
+    "date": "2025-06-18T09:05:00Z"
+  },
+  {
+    "id": "5",
+    "menuName": "Sable Cookies",
+    "quantity": 10,
+    "pricePerUnit": 35000,
+    "totalAmount": 350000,
+    "date": "2025-06-26T17:40:00Z"
+  }
+]
