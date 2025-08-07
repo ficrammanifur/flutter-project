@@ -1,36 +1,105 @@
 # Pilates Membership Backend API
+# 🧘 Pilates Member Backend API
 
-A complete Flask backend API for the Pilates Membership Flutter app with authentication, membership management, and class booking features.
+<p align="center">
+  <img src="https://img.shields.io/badge/Flask-2.3+-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask" />
+  <img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/JWT-Authentication-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white" alt="JWT" />
+  <img src="https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite" />
+</p>
+
+## 🎯 Overview
+
+A complete Flask REST API backend for the Pilates Membership Flutter application, featuring user authentication, membership management, class booking, and instructor scheduling. Built with modern security practices and scalable architecture.
+
+## ✨ Key Features
+
+### 🔐 Authentication & Security
+- **JWT-based Authentication** - Secure token-based authentication system
+- **User Registration & Login** - Complete user management with validation
+- **Password Hashing** - bcrypt encryption for secure password storage
+- **Token Expiration** - Configurable JWT token expiration (default: 7 days)
+- **Protected Routes** - Middleware-based route protection
+
+### 👥 User Management
+- **User Profiles** - Complete profile management with photo upload
+- **Role-based Access** - Member, instructor, and admin roles
+- **Profile Updates** - Real-time profile information updates
+- **Account Verification** - Email verification system
+
+### 💳 Membership System
+- **Package Management** - Multiple membership tiers and pricing
+- **Subscription Tracking** - Active membership status monitoring
+- **Payment Integration** - Ready for Stripe/PayPal integration
+- **Renewal Notifications** - Automated membership renewal alerts
+
+### 📅 Class Management
+- **Class Scheduling** - Flexible class scheduling system
+- **Booking System** - Real-time class booking with capacity management
+- **Instructor Assignment** - Instructor scheduling and management
+- **Waitlist Management** - Automatic waitlist handling for full classes
+
+## 🛠️ Tech Stack
+
+| Component | Technology | Version |
+|-----------|------------|---------|
+| **Framework** | Flask | 2.3.0+ |
+| **Database** | SQLite (Dev) / PostgreSQL (Prod) | Latest |
+| **Authentication** | JWT | 2.8+ |
+| **Password Hashing** | bcrypt | 4.0+ |
+| **CORS** | Flask-CORS | 4.0+ |
+| **Validation** | Marshmallow | 3.20+ |
+| **Testing** | pytest | 7.4+ |
+
+## 📋 Requirements
+
+### System Requirements
+- **Python**: 3.8 or higher
+- **Memory**: Minimum 512MB RAM
+- **Storage**: 100MB free space
+- **Network**: Internet connection for external services
+
+### Dependencies
+```txt
+Flask==2.3.2
+Flask-CORS==4.0.0
+Flask-JWT-Extended==4.5.2
+bcrypt==4.0.1
+marshmallow==3.20.1
+python-dotenv==1.0.0
+pytest==7.4.0
+requests==2.31.0
+```
 
 ## 🚀 Quick Start
 
 ### 1. Install Dependencies
-\`\`\`bash
+```bash
 pip install -r requirements.txt
-\`\`\`
+```
 
 ### 2. Set Environment Variables
-\`\`\`bash
+```bash
 # Copy the .env file and modify if needed
 cp .env .env.local
-\`\`\`
+```
 
 ### 3. Initialize Database
-\`\`\`bash
+```bash
 python db_config.py
-\`\`\`
+```
 
 ### 4. Start the Server
-\`\`\`bash
+```bash
 python main.py
-\`\`\`
+```
 
 The server will start at `http://localhost:5000`
 
 ### 5. Test the API
-\`\`\`bash
+```bash
 python test_api.py
-\`\`\`
+```
 
 ## 📱 Frontend Integration
 
@@ -86,16 +155,16 @@ The API uses JWT tokens for authentication:
 ## 🛠️ Development
 
 ### Running in Development Mode
-\`\`\`bash
+```bash
 export FLASK_ENV=development
 export FLASK_DEBUG=True
 python main.py
-\`\`\`
+```
 
 ### Testing All Endpoints
-\`\`\`bash
+```bash
 python test_api.py
-\`\`\`
+```
 
 ### Adding New Features
 
@@ -105,9 +174,9 @@ python test_api.py
 
 ## 🔄 Data Flow
 
-\`\`\`
+```
 Flutter App → HTTP Request → Flask API → In-Memory Database → JSON Response → Flutter App
-\`\`\`
+```
 
 ### Example Login Flow:
 1. Flutter sends `POST /auth/login` with email/password
@@ -119,11 +188,11 @@ Flutter App → HTTP Request → Flask API → In-Memory Database → JSON Respo
 ## 🚀 Production Deployment
 
 ### Environment Variables
-\`\`\`bash
+```bash
 JWT_SECRET=your-super-secure-secret-key
 FLASK_ENV=production
 FLASK_DEBUG=False
-\`\`\`
+```
 
 ### Database Migration
 Replace in-memory database with:
@@ -141,9 +210,9 @@ Replace in-memory database with:
 ## 📈 Monitoring
 
 ### Health Check
-\`\`\`bash
+```bash
 curl http://localhost:5000/
-\`\`\`
+```
 
 ### API Status
 The backend logs all requests and errors to console.
@@ -153,10 +222,10 @@ The backend logs all requests and errors to console.
 ### Common Issues
 
 1. **Port 5000 already in use**
-   \`\`\`bash
+   ```bash
    # Kill process using port 5000
    lsof -ti:5000 | xargs kill -9
-   \`\`\`
+   ```
 
 2. **CORS errors**
    - Backend has CORS enabled for all origins
@@ -171,29 +240,29 @@ The backend logs all requests and errors to console.
    - Check firewall settings
 
 ### Debug Mode
-\`\`\`bash
+```bash
 export FLASK_DEBUG=True
 python main.py
-\`\`\`
+```
 
 ## 📚 API Documentation
 
 ### Request/Response Examples
 
 #### Login
-\`\`\`bash
+```bash
 curl -X POST http://localhost:5000/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email":"john@example.com","password":"password123"}'
-\`\`\`
+```
 
 #### Get Packages
-\`\`\`bash
+```bash
 curl http://localhost:5000/packages
-\`\`\`
+```
 
 #### Create Booking
-\`\`\`bash
+```bash
 curl -X POST http://localhost:5000/bookings \
   -H "Content-Type: application/json" \
   -d '{
@@ -202,7 +271,7 @@ curl -X POST http://localhost:5000/bookings \
     "scheduled_time": "2024-01-15T09:00:00",
     "instructor": "Sarah Johnson"
   }'
-\`\`\`
+```
 
 ## 🎯 Features
 
