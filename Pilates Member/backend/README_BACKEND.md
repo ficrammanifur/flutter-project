@@ -1,5 +1,4 @@
-# Pilates Membership Backend API
-# 🧘 Pilates Member Backend API
+<h1 align="center"> # 🧘 Pilates Member Backend API
 
 <p align="center">
   <img src="https://img.shields.io/badge/Flask-2.3+-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask" />
@@ -306,4 +305,8 @@ curl -X POST http://localhost:5000/bookings \
 ├── .env                # Environment variables (JWT secret, dll)
 ├── requirements.txt    # Daftar dependencies Python
 
+<div align="center">
 **🎉 Your backend is ready! The Flutter app will now work with real API calls.**
+<p><a href="#top">⬆ Kembali ke Atas</a></p>
+
+</div>
