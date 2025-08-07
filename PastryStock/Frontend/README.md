@@ -1,4 +1,4 @@
-# PastryStock Frontend - Flutter Mobile App
+<h1 align="center"> PastryStock Frontend - Flutter Mobile App
 
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-Mobile%20App-blue?style=for-the-badge&logo=flutter" />
@@ -77,7 +77,7 @@ PastryStock adalah aplikasi mobile Flutter untuk manajemen stok dan penjualan ya
 | **Notifications** | flutter_local_notifications | 15.1.0+ |
 
 ### Architecture Pattern
-\`\`\`
+```
 ┌─────────────────────────────────────────────────────────────┐
 │                    Presentation Layer                       │
 ├─────────────────────────────────────────────────────────────┤
@@ -91,7 +91,7 @@ PastryStock adalah aplikasi mobile Flutter untuk manajemen stok dan penjualan ya
 ├─────────────────────────────────────────────────────────────┤
 │  API Service │ Local Storage │ Cache Manager │ Preferences │
 └─────────────────────────────────────────────────────────────┘
-\`\`\`
+```
 
 ## 📱 Persyaratan Sistem
 
@@ -110,7 +110,7 @@ PastryStock adalah aplikasi mobile Flutter untuk manajemen stok dan penjualan ya
 - **Network**: Internet connection untuk sinkronisasi data
 
 ### Permissions Required
-\`\`\`xml
+```xml
  Android Permissions 
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -118,39 +118,39 @@ PastryStock adalah aplikasi mobile Flutter untuk manajemen stok dan penjualan ya
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.VIBRATE" />
 <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-\`\`\`
+```
 
 ## 🚀 Installation & Setup
 
 ### 1. Prerequisites Setup
-\`\`\`bash
+```bash
 # Install Flutter
 git clone https://github.com/flutter/flutter.git -b stable
 export PATH="$PATH:`pwd`/flutter/bin"
 
 # Verify installation
 flutter doctor
-\`\`\`
+```
 
 ### 2. Clone Repository
-\`\`\`bash
+```bash
 git clone https://github.com/yourusername/pastrystock-frontend.git
 cd pastrystock-frontend
-\`\`\`
+```
 
 ### 3. Install Dependencies
-\`\`\`bash
+```bash
 # Get Flutter packages
 flutter pub get
 
 # For iOS (if developing for iOS)
 cd ios && pod install && cd ..
-\`\`\`
+```
 
 ### 4. Configuration Setup
 
 #### Create \`lib/config/app_config.dart\`:
-\`\`\`dart
+```dart
 class AppConfig {
   static const String baseUrl = 'http://localhost:5000/api';
   static const String appName = 'PastryStock';
@@ -164,10 +164,10 @@ class AppConfig {
   static const String ingredientsEndpoint = '/ingredients';
   static const String predictionsEndpoint = '/predictions';
 }
-\`\`\`
+```
 
 #### Update \`android/app/src/main/AndroidManifest.xml\`:
-\`\`\`xml
+```xml
 <application
     android:label="PastryStock"
     android:name="${applicationName}"
@@ -193,10 +193,10 @@ class AppConfig {
         </intent-filter>
     </activity>
 </application>
-\`\`\`
+```
 
 ### 5. Run Application
-\`\`\`bash
+```bash
 # Run in debug mode
 flutter run
 
@@ -206,11 +206,11 @@ flutter run --release
 # Run on specific device
 flutter devices
 flutter run -d <device_id>
-\`\`\`
+```
 
 ## 📂 Project Structure
 
-\`\`\`
+```
 lib/
 ├── main.dart                    # Entry point
 ├── config/
@@ -287,12 +287,12 @@ lib/
     ├── fonts/                 # Custom fonts
     └── data/
         └── demo_data.json     # Demo data for testing
-\`\`\`
+```
 
 ## 🎨 UI/UX Design System
 
 ### Color Palette
-\`\`\`dart
+```dart
 class AppColors {
   // Primary Colors - Warm Bakery Theme
   static const Color primary = Color(0xFF8B4513);        // Saddle Brown
@@ -320,10 +320,10 @@ class AppColors {
   static const Color textSecondary = Color(0xFF757575);  // Medium Gray
   static const Color textHint = Color(0xFFBDBDBD);       // Light Gray
 }
-\`\`\`
+```
 
 ### Typography
-\`\`\`dart
+```dart
 class AppTextStyles {
   static const TextStyle heading1 = TextStyle(
     fontSize: 32,
@@ -349,10 +349,10 @@ class AppTextStyles {
     color: AppColors.textSecondary,
   );
 }
-\`\`\`
+```
 
 ### Component Themes
-\`\`\`dart
+```dart
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     primarySwatch: MaterialColor(0xFF8B4513, {
@@ -394,12 +394,12 @@ class AppTheme {
     ),
   );
 }
-\`\`\`
+```
 
 ## 📊 State Management
 
 ### Provider Pattern Implementation
-\`\`\`dart
+```dart
 // Sales Provider Example
 class SalesProvider with ChangeNotifier {
   List<Sale> _sales = [];
@@ -437,10 +437,10 @@ class SalesProvider with ChangeNotifier {
     }
   }
 }
-\`\`\`
+```
 
 ### Provider Setup in main.dart
-\`\`\`dart
+```dart
 void main() {
   runApp(
     MultiProvider(
@@ -455,12 +455,12 @@ void main() {
     ),
   );
 }
-\`\`\`
+```
 
 ## 🔌 API Integration
 
 ### API Service Implementation
-\`\`\`dart
+```dart
 class ApiService {
   static const String baseUrl = AppConfig.baseUrl;
   static final http.Client _client = http.Client();
@@ -573,12 +573,12 @@ class ApiService {
     );
   }
 }
-\`\`\`
+```
 
 ## 📊 ARIMA Prediction Implementation
 
 ### Prediction Model
-\`\`\`dart
+```dart
 class Prediction {
   final String ingredientId;
   final String ingredientName;
@@ -622,10 +622,10 @@ class Prediction {
     );
   }
 }
-\`\`\`
+```
 
 ### Prediction Chart Widget
-\`\`\`dart
+```dart
 class PredictionChartWidget extends StatelessWidget {
   final Prediction prediction;
   
@@ -755,12 +755,12 @@ class PredictionChartWidget extends StatelessWidget {
     );
   }
 }
-\`\`\`
+```
 
 ## 🧪 Testing
 
 ### Unit Testing
-\`\`\`dart
+```dart
 // test/models/sales_model_test.dart
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pastrystock/models/sales_model.dart';
@@ -804,10 +804,10 @@ void main() {
     });
   });
 }
-\`\`\`
+```
 
 ### Widget Testing
-\`\`\`dart
+```dart
 // test/widgets/sales_form_widget_test.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -851,10 +851,10 @@ void main() {
     });
   });
 }
-\`\`\`
+```
 
 ### Integration Testing
-\`\`\`dart
+```dart
 // integration_test/app_test.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -888,10 +888,10 @@ void main() {
     });
   });
 }
-\`\`\`
+```
 
 ### Run Tests
-\`\`\`bash
+```bash
 # Run unit tests
 flutter test
 
@@ -901,12 +901,12 @@ flutter test integration_test/
 # Run tests with coverage
 flutter test --coverage
 genhtml coverage/lcov.info -o coverage/html
-\`\`\`
+```
 
 ## 📱 Build & Deployment
 
 ### Android Build
-\`\`\`bash
+```bash
 # Debug build
 flutter build apk --debug
 
@@ -915,10 +915,10 @@ flutter build apk --release
 
 # Build App Bundle (recommended for Play Store)
 flutter build appbundle --release
-\`\`\`
+```
 
 ### iOS Build
-\`\`\`bash
+```bash
 # Debug build
 flutter build ios --debug
 
@@ -927,10 +927,10 @@ flutter build ios --release
 
 # Build for App Store
 flutter build ipa --release
-\`\`\`
+```
 
 ### Build Configuration
-\`\`\`yaml
+```yaml
 # android/app/build.gradle
 android {
     compileSdkVersion 33
@@ -953,12 +953,12 @@ android {
         }
     }
 }
-\`\`\`
+```
 
 ## 🔧 Performance Optimization
 
 ### Image Optimization
-\`\`\`dart
+```dart
 // Use cached network images
 import 'package:cached_network_image.dart';
 
@@ -971,10 +971,10 @@ Widget buildOptimizedImage(String imageUrl) {
     memCacheHeight: 300,
   );
 }
-\`\`\`
+```
 
 ### List Performance
-\`\`\`dart
+```dart
 // Use ListView.builder for large lists
 Widget buildOptimizedList(List<Sale> sales) {
   return ListView.builder(
@@ -984,10 +984,10 @@ Widget buildOptimizedList(List<Sale> sales) {
     },
   );
 }
-\`\`\`
+```
 
 ### State Management Optimization
-\`\`\`dart
+```dart
 // Use Selector for specific state updates
 class SalesScreen extends StatelessWidget {
   @override
@@ -1003,12 +1003,12 @@ class SalesScreen extends StatelessWidget {
     );
   }
 }
-\`\`\`
+```
 
 ## 🔒 Security Best Practices
 
 ### Secure Storage
-\`\`\`dart
+```dart
 import 'package:flutter_secure_storage.dart';
 
 class SecureStorageService {
@@ -1026,10 +1026,10 @@ class SecureStorageService {
     await _storage.delete(key: 'auth_token');
   }
 }
-\`\`\`
+```
 
 ### Input Validation
-\`\`\`dart
+```dart
 class Validators {
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
@@ -1052,14 +1052,14 @@ class Validators {
     return null;
   }
 }
-\`\`\`
+```
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
 #### Build Errors
-\`\`\`bash
+```bash
 # Clean build cache
 flutter clean
 flutter pub get
@@ -1069,10 +1069,10 @@ cd ios && rm -rf Pods Podfile.lock && pod install && cd ..
 
 # Fix Android build issues
 cd android && ./gradlew clean && cd ..
-\`\`\`
+```
 
 #### Network Issues
-\`\`\`dart
+```dart
 // Add network security config for Android
 // android/app/src/main/res/xml/network_security_config.xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -1082,10 +1082,10 @@ cd android && ./gradlew clean && cd ..
         <domain includeSubdomains="true">10.0.2.2</domain>
     </domain-config>
 </network-security-config>
-\`\`\`
+```
 
 #### Performance Issues
-\`\`\`dart
+```dart
 // Enable performance overlay
 import 'package:flutter/rendering.dart';
 
@@ -1093,12 +1093,12 @@ void main() {
   debugPaintSizeEnabled = false; // Set to true for debugging
   runApp(MyApp());
 }
-\`\`\`
+```
 
 ## 📈 Analytics & Monitoring
 
 ### Crash Reporting
-\`\`\`dart
+```dart
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 void main() async {
@@ -1109,10 +1109,10 @@ void main() async {
   
   runApp(MyApp());
 }
-\`\`\`
+```
 
 ### Performance Monitoring
-\`\`\`dart
+```dart
 import 'package:firebase_performance/firebase_performance.dart';
 
 class ApiService {
@@ -1128,7 +1128,7 @@ class ApiService {
     }
   }
 }
-\`\`\`
+```
 
 ## 🤝 Contributing
 
@@ -1172,5 +1172,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **⭐ Star this repository if you found it helpful!**
 
 Made with ❤️ using Flutter
+
+<p><a href="#top">⬆ Back on Top</a></p>
 
 </div>
