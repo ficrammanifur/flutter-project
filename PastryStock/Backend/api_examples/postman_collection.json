@@ -1,0 +1,240 @@
+{
+  "info": {
+    "name": "PastryStock API",
+    "description": "Complete API collection for PastryStock backend",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"demo@pastrystock.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New User\",\n  \"email\": \"newuser@example.com\",\n  \"password\": \"newpassword123\",\n  \"role\": \"user\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/signup",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "signup"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"demo@pastrystock.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/reset-password",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "reset-password"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sales",
+      "item": [
+        {
+          "name": "Get Recent Sales",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/sales/recent",
+              "host": ["{{base_url}}"],
+              "path": ["sales", "recent"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Today Sales",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/sales/today",
+              "host": ["{{base_url}}"],
+              "path": ["sales", "today"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add Sale",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"menuName\": \"Muffin\",\n  \"quantity\": 5,\n  \"pricePerItem\": 20000,\n  \"metadata\": {\n    \"paymentMethod\": \"cash\",\n    \"customerName\": \"Walk-in Customer\",\n    \"notes\": \"Regular order\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/sales",
+              "host": ["{{base_url}}"],
+              "path": ["sales"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Ingredients",
+      "item": [
+        {
+          "name": "Get All Ingredients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/ingredients",
+              "host": ["{{base_url}}"],
+              "path": ["ingredients"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Low Stock Ingredients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/ingredients/low-stock",
+              "host": ["{{base_url}}"],
+              "path": ["ingredients", "low-stock"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Ingredient Stock",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentStock\": 200,\n  \"operation\": \"add\",\n  \"notes\": \"New stock delivery\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/ingredients/ing001_keju/stock",
+              "host": ["{{base_url}}"],
+              "path": ["ingredients", "ing001_keju", "stock"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Predictions",
+      "item": [
+        {
+          "name": "Get All Predictions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/predictions",
+              "host": ["{{base_url}}"],
+              "path": ["predictions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get ARIMA Prediction",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/predictions/ing001_keju/arima",
+              "host": ["{{base_url}}"],
+              "path": ["predictions", "ing001_keju", "arima"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
