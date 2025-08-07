@@ -44,7 +44,7 @@ Aplikasi mobile ARIMA Analytics adalah sistem prediksi bahan baku berbasis machi
 - Virtual environment (recommended)
 
 ### Dependencies
-\`\`\`yaml
+```yaml
 # Flutter dependencies
 dependencies:
   flutter:
@@ -58,14 +58,14 @@ Flask-CORS==4.0.0
 pandas==2.0.3
 numpy==1.24.3
 scikit-learn==1.3.0
-\`\`\`
+```
 
 ## 🚀 Installation
 
 ### 1. Backend Setup
 
 #### Install Python Dependencies
-\`\`\`bash
+```bash
 # Create virtual environment
 python -m venv venv
 
@@ -77,28 +77,28 @@ source venv/bin/activate
 
 # Install dependencies
 pip install -r backend/requirements.txt
-\`\`\`
+```
 
 #### Run Flask Server
-\`\`\`bash
+```bash
 cd backend
 python app.py
-\`\`\`
+```
 Server akan berjalan di `http://localhost:5000`
 
 ### 2. Mobile App Setup
 
 #### Install Flutter Dependencies
-\`\`\`bash
+```bash
 # Get Flutter packages
 flutter pub get
 
 # Run code generation (if needed)
 flutter packages pub run build_runner build
-\`\`\`
+```
 
 #### Run Flutter App
-\`\`\`bash
+```bash
 # Run on connected device/emulator
 flutter run
 
@@ -107,7 +107,7 @@ flutter run --debug
 
 # Build APK
 flutter build apk
-\`\`\`
+```
 
 ## 📡 API Endpoints Structure
 
