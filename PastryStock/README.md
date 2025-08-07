@@ -202,7 +202,7 @@ def get_dashboard_data():
         }), 500
 ```
 ## Specific API Endpoints Flow:
-
+### ARIMA Analytics API Endpoints Flow
 ```mermaid
 graph LR
     A["📱 Flutter App"] --> B["🎯 API Endpoints"]
@@ -225,7 +225,7 @@ graph LR
 ```
 
 ## HTTP Status Codes Flow:
-
+### HTTP Status Code Handling
 ```mermaid
 graph TD
     A["📡 HTTP Response"] --> B["🔍 Status Code Check"]
@@ -256,9 +256,8 @@ graph TD
 ```
 
 ## Error Handling Flow:
-
+### API Error Handling Strategy
 ```mermaid
-API Error Handling Strategy
 graph TD
     A["🚨 Error Occurred"] --> B["🔍 Error Type Check"]
     
