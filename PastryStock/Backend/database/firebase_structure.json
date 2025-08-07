@@ -1,0 +1,771 @@
+{
+  "pastrystock": {
+    "users": {
+      "mmUafQaIuxMAyCBphal7kZuaRzH2": {
+        "created_at": "2025-01-20T02:10:23.259143",
+        "email": "demo@pastrystock.com",
+        "name": "Demo User",
+        "password_hash": "$2b$12$z0d6my4FAprjSKWNnibBsOC4.dOxXLkfHrhvzmDSmL61A12QCCBei",
+        "role": "user",
+        "profile": {
+          "avatar_url": "",
+          "phone": "",
+          "address": "",
+          "preferences": {
+            "theme": "light",
+            "language": "id",
+            "notifications": true
+          }
+        }
+      },
+      "adminUser123ABC": {
+        "created_at": "2025-01-15T08:30:00.000000",
+        "email": "admin@pastrystock.com",
+        "name": "Admin User",
+        "password_hash": "$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewdBPj/RK.PmvlG.",
+        "role": "admin",
+        "profile": {
+          "avatar_url": "https://example.com/avatar.jpg",
+          "phone": "+62812345678",
+          "address": "Jakarta, Indonesia",
+          "preferences": {
+            "theme": "dark",
+            "language": "en",
+            "notifications": true
+          }
+        }
+      }
+    },
+    "sales": {
+      "OTxyremGFYozQTbxdWF": {
+        "date": "2025-01-07T06:17:46.147072",
+        "menuName": "Muffin",
+        "pricePerItem": 20000,
+        "quantity": 10,
+        "totalAmount": 200000,
+        "userId": "mmUafQaIuxMAyCBphal7kZuaRzH2",
+        "metadata": {
+          "paymentMethod": "cash",
+          "customerName": "Walk-in Customer",
+          "notes": "Regular customer order"
+        }
+      },
+      "OUVeNZmDdVCiGbTrQ4Q": {
+        "date": "2025-01-07T23:54:56.701469",
+        "menuName": "Croissant",
+        "pricePerItem": 18000,
+        "quantity": 5,
+        "totalAmount": 90000,
+        "userId": "mmUafQaIuxMAyCBphal7kZuaRzH2",
+        "metadata": {
+          "paymentMethod": "digital",
+          "customerName": "John Doe",
+          "notes": "Online order"
+        }
+      },
+      "OUVko6RfxropiAmPSNQ": {
+        "date": "2025-01-08T00:23:01.949467",
+        "menuName": "Cheesecake",
+        "pricePerItem": 35000,
+        "quantity": 2,
+        "totalAmount": 70000,
+        "userId": "mmUafQaIuxMAyCBphal7kZuaRzH2",
+        "metadata": {
+          "paymentMethod": "card",
+          "customerName": "Jane Smith",
+          "notes": "Birthday cake order"
+        }
+      },
+      "saleABC123DEF456": {
+        "date": "2025-01-08T10:15:30.123456",
+        "menuName": "Sable Cookies",
+        "pricePerItem": 25000,
+        "quantity": 8,
+        "totalAmount": 200000,
+        "userId": "mmUafQaIuxMAyCBphal7kZuaRzH2",
+        "metadata": {
+          "paymentMethod": "cash",
+          "customerName": "Corporate Order",
+          "notes": "Bulk order for office meeting"
+        }
+      },
+      "saleXYZ789GHI012": {
+        "date": "2025-01-08T14:45:15.987654",
+        "menuName": "Mini Muffin",
+        "pricePerItem": 15000,
+        "quantity": 15,
+        "totalAmount": 225000,
+        "userId": "mmUafQaIuxMAyCBphal7kZuaRzH2",
+        "metadata": {
+          "paymentMethod": "digital",
+          "customerName": "Sarah Wilson",
+          "notes": "Party order"
+        }
+      }
+    },
+    "ingredients": {
+      "ing001_keju": {
+        "ingredientName": "Keju",
+        "currentStock": 450.5,
+        "unit": "gram",
+        "dailyConsumption": 45.2,
+        "minThreshold": 100,
+        "status": "sufficient",
+        "recommendation": "Stock sufficient for approximately 10 days",
+        "supplier": {
+          "name": "Dairy Fresh Supplier",
+          "contact": "+62812345678",
+          "email": "supplier@dairyfresh.com"
+        },
+        "lastUpdated": "2025-01-08T15:30:00.000000",
+        "consumptionHistory": {
+          "M12345": {
+            "consumption": 45.0,
+            "date": "2025-01-01"
+          },
+          "M12346": {
+            "consumption": 47.2,
+            "date": "2025-01-02"
+          },
+          "M12347": {
+            "consumption": 43.8,
+            "date": "2025-01-03"
+          },
+          "M12348": {
+            "consumption": 46.1,
+            "date": "2025-01-04"
+          },
+          "M12349": {
+            "consumption": 48.5,
+            "date": "2025-01-05"
+          },
+          "M12350": {
+            "consumption": 44.3,
+            "date": "2025-01-06"
+          },
+          "M12351": {
+            "consumption": 45.7,
+            "date": "2025-01-07"
+          },
+          "M12352": {
+            "consumption": 42.9,
+            "date": "2025-01-08"
+          }
+        }
+      },
+      "ing002_susu": {
+        "ingredientName": "Susu UHT Greenfields",
+        "currentStock": 1850.0,
+        "unit": "ml",
+        "dailyConsumption": 152.3,
+        "minThreshold": 500,
+        "status": "sufficient",
+        "recommendation": "Stock sufficient for approximately 12 days",
+        "supplier": {
+          "name": "Greenfields Distributor",
+          "contact": "+62823456789",
+          "email": "order@greenfields.co.id"
+        },
+        "lastUpdated": "2025-01-08T15:30:00.000000",
+        "consumptionHistory": {
+          "H23456": {
+            "consumption": 150.0,
+            "date": "2025-01-01"
+          },
+          "H23457": {
+            "consumption": 155.5,
+            "date": "2025-01-02"
+          },
+          "H23458": {
+            "consumption": 148.2,
+            "date": "2025-01-03"
+          },
+          "H23459": {
+            "consumption": 152.8,
+            "date": "2025-01-04"
+          },
+          "H23460": {
+            "consumption": 160.1,
+            "date": "2025-01-05"
+          },
+          "H23461": {
+            "consumption": 145.7,
+            "date": "2025-01-06"
+          },
+          "H23462": {
+            "consumption": 151.3,
+            "date": "2025-01-07"
+          },
+          "H23463": {
+            "consumption": 149.6,
+            "date": "2025-01-08"
+          }
+        }
+      },
+      "ing003_creamer": {
+        "ingredientName": "Creamer",
+        "currentStock": 720.0,
+        "unit": "gram",
+        "dailyConsumption": 58.7,
+        "minThreshold": 200,
+        "status": "sufficient",
+        "recommendation": "Stock sufficient for approximately 12 days",
+        "supplier": {
+          "name": "Indofood Distributor",
+          "contact": "+62834567890",
+          "email": "sales@indofood.com"
+        },
+        "lastUpdated": "2025-01-08T15:30:00.000000",
+        "consumptionHistory": {
+          "C34567": {
+            "consumption": 60.0,
+            "date": "2025-01-01"
+          },
+          "C34568": {
+            "consumption": 58.3,
+            "date": "2025-01-02"
+          },
+          "C34569": {
+            "consumption": 59.1,
+            "date": "2025-01-03"
+          },
+          "C34570": {
+            "consumption": 57.8,
+            "date": "2025-01-04"
+          },
+          "C34571": {
+            "consumption": 60.5,
+            "date": "2025-01-05"
+          },
+          "C34572": {
+            "consumption": 56.9,
+            "date": "2025-01-06"
+          },
+          "C34573": {
+            "consumption": 58.2,
+            "date": "2025-01-07"
+          },
+          "C34574": {
+            "consumption": 59.7,
+            "date": "2025-01-08"
+          }
+        }
+      },
+      "ing004_gula": {
+        "ingredientName": "Gula",
+        "currentStock": 1320.0,
+        "unit": "gram",
+        "dailyConsumption": 118.5,
+        "minThreshold": 300,
+        "status": "sufficient",
+        "recommendation": "Stock sufficient for approximately 11 days",
+        "supplier": {
+          "name": "Gulaku Distributor",
+          "contact": "+62845678901",
+          "email": "order@gulaku.co.id"
+        },
+        "lastUpdated": "2025-01-08T15:30:00.000000",
+        "consumptionHistory": {
+          "G45678": {
+            "consumption": 120.0,
+            "date": "2025-01-01"
+          },
+          "G45679": {
+            "consumption": 118.7,
+            "date": "2025-01-02"
+          },
+          "G45680": {
+            "consumption": 119.3,
+            "date": "2025-01-03"
+          },
+          "G45681": {
+            "consumption": 117.2,
+            "date": "2025-01-04"
+          },
+          "G45682": {
+            "consumption": 121.1,
+            "date": "2025-01-05"
+          },
+          "G45683": {
+            "consumption": 116.8,
+            "date": "2025-01-06"
+          },
+          "G45684": {
+            "consumption": 118.9,
+            "date": "2025-01-07"
+          },
+          "G45685": {
+            "consumption": 120.4,
+            "date": "2025-01-08"
+          }
+        }
+      },
+      "ing005_cokelat": {
+        "ingredientName": "Dark Cokelat",
+        "currentStock": 275.0,
+        "unit": "gram",
+        "dailyConsumption": 24.8,
+        "minThreshold": 100,
+        "status": "sufficient",
+        "recommendation": "Stock sufficient for approximately 11 days",
+        "supplier": {
+          "name": "Chocolate Premium",
+          "contact": "+62856789012",
+          "email": "sales@chocpremium.com"
+        },
+        "lastUpdated": "2025-01-08T15:30:00.000000",
+        "consumptionHistory": {
+          "D56789": {
+            "consumption": 25.0,
+            "date": "2025-01-01"
+          },
+          "D56790": {
+            "consumption": 24.5,
+            "date": "2025-01-02"
+          },
+          "D56791": {
+            "consumption": 25.3,
+            "date": "2025-01-03"
+          },
+          "D56792": {
+            "consumption": 24.1,
+            "date": "2025-01-04"
+          },
+          "D56793": {
+            "consumption": 25.7,
+            "date": "2025-01-05"
+          },
+          "D56794": {
+            "consumption": 24.2,
+            "date": "2025-01-06"
+          },
+          "D56795": {
+            "consumption": 24.9,
+            "date": "2025-01-07"
+          },
+          "D56796": {
+            "consumption": 25.1,
+            "date": "2025-01-08"
+          }
+        }
+      },
+      "ing006_yogurt": {
+        "ingredientName": "Yogurt",
+        "currentStock": 920.0,
+        "unit": "gram",
+        "dailyConsumption": 78.3,
+        "minThreshold": 250,
+        "status": "sufficient",
+        "recommendation": "Stock sufficient for approximately 12 days",
+        "supplier": {
+          "name": "Heavenly Blush",
+          "contact": "+62867890123",
+          "email": "order@heavenlyblush.com"
+        },
+        "lastUpdated": "2025-01-08T15:30:00.000000",
+        "consumptionHistory": {
+          "Y67890": {
+            "consumption": 80.0,
+            "date": "2025-01-01"
+          },
+          "Y67891": {
+            "consumption": 78.5,
+            "date": "2025-01-02"
+          },
+          "Y67892": {
+            "consumption": 79.2,
+            "date": "2025-01-03"
+          },
+          "Y67893": {
+            "consumption": 77.8,
+            "date": "2025-01-04"
+          },
+          "Y67894": {
+            "consumption": 80.1,
+            "date": "2025-01-05"
+          },
+          "Y67895": {
+            "consumption": 76.9,
+            "date": "2025-01-06"
+          },
+          "Y67896": {
+            "consumption": 78.7,
+            "date": "2025-01-07"
+          },
+          "Y67897": {
+            "consumption": 79.3,
+            "date": "2025-01-08"
+          }
+        }
+      },
+      "ing007_matcha": {
+        "ingredientName": "Matcha Bubuk",
+        "currentStock": 180.0,
+        "unit": "gram",
+        "dailyConsumption": 14.2,
+        "minThreshold": 50,
+        "status": "sufficient",
+        "recommendation": "Stock sufficient for approximately 13 days",
+        "supplier": {
+          "name": "Japanese Tea Import",
+          "contact": "+62878901234",
+          "email": "info@japanesetea.co.id"
+        },
+        "lastUpdated": "2025-01-08T15:30:00.000000",
+        "consumptionHistory": {
+          "T78901": {
+            "consumption": 15.0,
+            "date": "2025-01-01"
+          },
+          "T78902": {
+            "consumption": 14.3,
+            "date": "2025-01-02"
+          },
+          "T78903": {
+            "consumption": 14.8,
+            "date": "2025-01-03"
+          },
+          "T78904": {
+            "consumption": 13.9,
+            "date": "2025-01-04"
+          },
+          "T78905": {
+            "consumption": 15.1,
+            "date": "2025-01-05"
+          },
+          "T78906": {
+            "consumption": 13.5,
+            "date": "2025-01-06"
+          },
+          "T78907": {
+            "consumption": 14.1,
+            "date": "2025-01-07"
+          },
+          "T78908": {
+            "consumption": 14.7,
+            "date": "2025-01-08"
+          }
+        }
+      },
+      "ing008_earlgrey": {
+        "ingredientName": "Earl Grey",
+        "currentStock": 135.0,
+        "unit": "gram",
+        "dailyConsumption": 9.8,
+        "minThreshold": 30,
+        "status": "sufficient",
+        "recommendation": "Stock sufficient for approximately 14 days",
+        "supplier": {
+          "name": "Premium Tea House",
+          "contact": "+62889012345",
+          "email": "sales@premiumtea.com"
+        },
+        "lastUpdated": "2025-01-08T15:30:00.000000",
+        "consumptionHistory": {
+          "E89012": {
+            "consumption": 10.0,
+            "date": "2025-01-01"
+          },
+          "E89013": {
+            "consumption": 9.7,
+            "date": "2025-01-02"
+          },
+          "E89014": {
+            "consumption": 10.2,
+            "date": "2025-01-03"
+          },
+          "E89015": {
+            "consumption": 9.5,
+            "date": "2025-01-04"
+          },
+          "E89016": {
+            "consumption": 10.3,
+            "date": "2025-01-05"
+          },
+          "E89017": {
+            "consumption": 9.4,
+            "date": "2025-01-06"
+          },
+          "E89018": {
+            "consumption": 9.9,
+            "date": "2025-01-07"
+          },
+          "E89019": {
+            "consumption": 10.1,
+            "date": "2025-01-08"
+          }
+        }
+      }
+    },
+    "predictions": {
+      "pred001_keju": {
+        "ingredientId": "ing001_keju",
+        "ingredientName": "Keju",
+        "unit": "gram",
+        "currentStock": 450.5,
+        "predictedConsumption": [45.2, 46.1, 44.8, 45.7, 47.3, 44.2, 45.9],
+        "predictedStock": [405.3, 359.2, 314.4, 268.7, 221.4, 177.2, 131.3],
+        "daysUntilEmpty": 10,
+        "recommendedOrder": 500.0,
+        "confidence": 0.87,
+        "modelParams": {
+          "p": 1,
+          "d": 1,
+          "q": 1,
+          "aic": 156.23,
+          "bic": 162.45
+        },
+        "accuracyMetrics": {
+          "mae": 2.34,
+          "mse": 8.12,
+          "rmse": 2.85,
+          "mape": 5.2
+        },
+        "confidenceInterval": {
+          "lower": [43.1, 43.8, 42.5, 43.4, 44.9, 41.9, 43.6],
+          "upper": [47.3, 48.4, 47.1, 48.0, 49.7, 46.5, 48.2]
+        },
+        "seasonalComponent": [0.2, -0.1, 0.3, -0.2, 0.4, -0.3, 0.1],
+        "trendDirection": "stable",
+        "predictionDate": "2025-01-08T15:30:00.000000",
+        "nextReorderDate": "2025-01-15T00:00:00.000000",
+        "alertLevel": "normal"
+      },
+      "pred002_susu": {
+        "ingredientId": "ing002_susu",
+        "ingredientName": "Susu UHT Greenfields",
+        "unit": "ml",
+        "currentStock": 1850.0,
+        "predictedConsumption": [152.3, 154.1, 150.8, 153.2, 156.7, 149.5, 152.9],
+        "predictedStock": [1697.7, 1543.6, 1392.8, 1239.6, 1082.9, 933.4, 780.5],
+        "daysUntilEmpty": 12,
+        "recommendedOrder": 2000.0,
+        "confidence": 0.91,
+        "modelParams": {
+          "p": 2,
+          "d": 1,
+          "q": 1,
+          "aic": 189.67,
+          "bic": 197.23
+        },
+        "accuracyMetrics": {
+          "mae": 3.45,
+          "mse": 15.67,
+          "rmse": 3.96,
+          "mape": 2.3
+        },
+        "confidenceInterval": {
+          "lower": [148.2, 149.8, 146.5, 149.1, 152.3, 145.2, 148.6],
+          "upper": [156.4, 158.4, 155.1, 157.3, 161.1, 153.8, 157.2]
+        },
+        "seasonalComponent": [0.1, 0.3, -0.2, 0.1, 0.5, -0.4, 0.0],
+        "trendDirection": "increasing",
+        "predictionDate": "2025-01-08T15:30:00.000000",
+        "nextReorderDate": "2025-01-17T00:00:00.000000",
+        "alertLevel": "normal"
+      }
+    },
+    "menuItems": {
+      "menu001": {
+        "name": "Muffin",
+        "price": 20000,
+        "category": "pastry",
+        "description": "Delicious chocolate muffin with premium ingredients",
+        "ingredients": ["ing001_keju", "ing002_susu", "ing004_gula", "ing005_cokelat"],
+        "recipe": {
+          "ing001_keju": 5.0,
+          "ing002_susu": 15.0,
+          "ing004_gula": 12.0,
+          "ing005_cokelat": 3.0
+        },
+        "isActive": true,
+        "preparationTime": 25,
+        "difficulty": "easy",
+        "allergens": ["dairy", "gluten"],
+        "nutritionInfo": {
+          "calories": 280,
+          "protein": 6.2,
+          "carbs": 35.1,
+          "fat": 12.8,
+          "fiber": 2.1
+        },
+        "imageUrl": "https://example.com/images/muffin.jpg",
+        "createdAt": "2025-01-01T00:00:00.000000"
+      },
+      "menu002": {
+        "name": "Mini Muffin",
+        "price": 15000,
+        "category": "pastry",
+        "description": "Small sized muffin perfect for snacking",
+        "ingredients": ["ing001_keju", "ing002_susu", "ing004_gula"],
+        "recipe": {
+          "ing001_keju": 3.0,
+          "ing002_susu": 10.0,
+          "ing004_gula": 8.0
+        },
+        "isActive": true,
+        "preparationTime": 20,
+        "difficulty": "easy",
+        "allergens": ["dairy", "gluten"],
+        "nutritionInfo": {
+          "calories": 180,
+          "protein": 4.1,
+          "carbs": 22.3,
+          "fat": 8.2,
+          "fiber": 1.4
+        },
+        "imageUrl": "https://example.com/images/mini-muffin.jpg",
+        "createdAt": "2025-01-01T00:00:00.000000"
+      },
+      "menu003": {
+        "name": "Cheesecake",
+        "price": 35000,
+        "category": "cake",
+        "description": "Creamy cheesecake slice with graham cracker crust",
+        "ingredients": ["ing001_keju", "ing002_susu", "ing004_gula", "ing006_yogurt"],
+        "recipe": {
+          "ing001_keju": 15.0,
+          "ing002_susu": 20.0,
+          "ing004_gula": 10.0,
+          "ing006_yogurt": 12.0
+        },
+        "isActive": true,
+        "preparationTime": 45,
+        "difficulty": "medium",
+        "allergens": ["dairy", "gluten", "eggs"],
+        "nutritionInfo": {
+          "calories": 420,
+          "protein": 8.7,
+          "carbs": 28.5,
+          "fat": 31.2,
+          "fiber": 1.8
+        },
+        "imageUrl": "https://example.com/images/cheesecake.jpg",
+        "createdAt": "2025-01-01T00:00:00.000000"
+      },
+      "menu004": {
+        "name": "Sable Cookies",
+        "price": 25000,
+        "category": "cookies",
+        "description": "Buttery sable cookies with delicate texture",
+        "ingredients": ["ing001_keju", "ing004_gula", "ing003_creamer"],
+        "recipe": {
+          "ing001_keju": 2.0,
+          "ing004_gula": 6.0,
+          "ing003_creamer": 4.0
+        },
+        "isActive": true,
+        "preparationTime": 35,
+        "difficulty": "medium",
+        "allergens": ["dairy", "gluten"],
+        "nutritionInfo": {
+          "calories": 320,
+          "protein": 4.5,
+          "carbs": 38.2,
+          "fat": 16.8,
+          "fiber": 1.2
+        },
+        "imageUrl": "https://example.com/images/sable-cookies.jpg",
+        "createdAt": "2025-01-01T00:00:00.000000"
+      },
+      "menu005": {
+        "name": "Croissant",
+        "price": 18000,
+        "category": "pastry",
+        "description": "Flaky butter croissant with layers of buttery goodness",
+        "ingredients": ["ing001_keju", "ing002_susu", "ing003_creamer"],
+        "recipe": {
+          "ing001_keju": 3.0,
+          "ing002_susu": 8.0,
+          "ing003_creamer": 5.0
+        },
+        "isActive": true,
+        "preparationTime": 60,
+        "difficulty": "hard",
+        "allergens": ["dairy", "gluten"],
+        "nutritionInfo": {
+          "calories": 250,
+          "protein": 5.8,
+          "carbs": 26.4,
+          "fat": 14.2,
+          "fiber": 2.3
+        },
+        "imageUrl": "https://example.com/images/croissant.jpg",
+        "createdAt": "2025-01-01T00:00:00.000000"
+      }
+    },
+    "userSessions": {
+      "session123ABC": {
+        "userId": "mmUafQaIuxMAyCBphal7kZuaRzH2",
+        "tokenHash": "hashed_jwt_token_here",
+        "expiresAt": "2025-01-15T15:30:00.000000",
+        "createdAt": "2025-01-08T15:30:00.000000",
+        "deviceInfo": {
+          "platform": "android",
+          "version": "1.0.0",
+          "deviceId": "device123"
+        }
+      }
+    },
+    "appSettings": {
+      "general": {
+        "appName": "PastryStock",
+        "version": "1.0.0",
+        "maintenanceMode": false,
+        "supportEmail": "support@pastrystock.com"
+      },
+      "business": {
+        "shopName": "Sweet Bakery",
+        "address": "Jl. Raya No. 123, Jakarta",
+        "phone": "+62812345678",
+        "operatingHours": {
+          "open": "08:00",
+          "close": "20:00",
+          "timezone": "Asia/Jakarta"
+        }
+      },
+      "notifications": {
+        "lowStockThreshold": 0.2,
+        "criticalStockThreshold": 0.1,
+        "enablePushNotifications": true,
+        "enableEmailAlerts": true
+      },
+      "predictions": {
+        "arimaEnabled": true,
+        "predictionDays": 7,
+        "minimumHistoryDays": 7,
+        "confidenceThreshold": 0.8
+      }
+    },
+    "analytics": {
+      "dailyStats": {
+        "2025-01-08": {
+          "totalSales": 585000,
+          "totalTransactions": 5,
+          "totalItemsSold": 40,
+          "averageTransactionValue": 117000,
+          "topSellingItem": "Mini Muffin",
+          "peakHour": "14:00"
+        },
+        "2025-01-07": {
+          "totalSales": 465000,
+          "totalTransactions": 4,
+          "totalItemsSold": 25,
+          "averageTransactionValue": 116250,
+          "topSellingItem": "Sable Cookies",
+          "peakHour": "16:00"
+        }
+      },
+      "monthlyStats": {
+        "2025-01": {
+          "totalSales": 1050000,
+          "totalTransactions": 9,
+          "totalItemsSold": 65,
+          "averageTransactionValue": 116667,
+          "growthRate": 15.2,
+          "topSellingItems": ["Mini Muffin", "Sable Cookies", "Muffin"]
+        }
+      }
+    }
+  }
+}
