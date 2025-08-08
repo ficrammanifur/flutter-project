@@ -1181,8 +1181,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Made with ❤️ using Flutter
 
-</div>```plaintext
-
+</div>
+```plaintext
 <Actions>
   <Action name="Create Widget Library" description="Create a comprehensive widget library with reusable components" />
   <Action name="Add Animations Package" description="Implement advanced animations and transitions throughout the app" />
