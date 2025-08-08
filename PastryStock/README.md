@@ -1,4 +1,4 @@
-# ARIMA Analytics Mobile App
+<h1 align="center"> ARIMA Analytics Mobile App
 
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-Mobile%20App-blue?style=for-the-badge&logo=flutter" />
@@ -324,3 +324,9 @@ class ApiService {
   }
 }
 ```
+
+<div align="center">
+  
+<p><a href="#top">⬆ Back on Top</a></p>
+
+</div>
