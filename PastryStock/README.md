@@ -1264,9 +1264,9 @@ SOFTWARE.
 
 ## 👥 Authors & Contributors
 
-- **Your Name** - *Initial work & Lead Developer* - [YourGitHub](https://github.com/yourusername)
-- **Team Member 2** - *Backend Development* - [GitHub](https://github.com/teammate2)
-- **Team Member 3** - *UI/UX Design* - [GitHub](https://github.com/teammate3)
+- **ME** - *Initial work & Lead Developer* - [MyGitHub](https://github.com/ficrammanifur)
+- **ME** - *Backend Development* - [GitHub](https://github.com/ficrammanifur)
+- **Just Me** - *UI/UX Design* - [GitHub](https://github.com/ficrammanifur)
 
 ### Special Thanks
 - **Academic Advisors** for guidance and support
@@ -1290,10 +1290,7 @@ SOFTWARE.
 
 ## 📞 Support & Contact
 
-- **Email**: support@arima-analytics.com
-- **Documentation**: [docs.arima-analytics.com](https://docs.arima-analytics.com)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/arima-analytics-app/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/arima-analytics-app/discussions)
+- **Email**: Ficramm@gmail..com
 
 ---
 
