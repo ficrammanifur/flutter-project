@@ -60,3 +60,39 @@ graph TB
     style B1 fill:#2196F3,stroke:#fff,color:#fff
     style B2 fill:#FF5722,stroke:#fff,color:#fff
     style B3 fill:#E91E63,stroke:#fff,color:#fff
+```
+
+### 🛠 Development Setup
+## 1️⃣ Menggunakan Android Emulator
+I use Android Emulator for this Flutter project.
+Pastikan kamu sudah menginstall Android SDK dan membuat emulator menggunakan AVD Manager atau avdmanager CLI.
+
+Jalankan emulator sebelum flutter run:
+
+```bash
+emulator -avd MyEmulatorName
+```
+Panduan singkat membuat emulator via command line:
+
+```bash
+# Install system image Android 13
+sdkmanager "system-images;android-33;google_apis;x86_64"
+
+# Buat AVD
+avdmanager create avd -n MyEmulator -k "system-images;android-33;google_apis;x86_64" -d pixel
+
+# Jalankan emulator
+emulator -avd MyEmulator
+```
+
+## 2️⃣ Konfigurasi gradle.properties
+Untuk memastikan performa build yang stabil pada emulator, gunakan konfigurasi berikut:
+```properties
+org.gradle.jvmargs=-Xmx1024m -XX:MaxMetaspaceSize=512m -XX:ReservedCodeCacheSize=256m -XX:+HeapDumpOnOutOfMemoryError
+android.useAndroidX=true
+android.enableJetifier=true
+```
+Letakkan file gradle.properties ini di:
+```bash
+<project-root>/android/gradle.properties
+```
