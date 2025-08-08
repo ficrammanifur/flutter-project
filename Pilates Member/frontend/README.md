@@ -1,4 +1,4 @@
-# 🧘 Pilates Member - Flutter Frontend
+<h1 align="center"> 🧘 Pilates Member - Flutter Frontend
 
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-3.7+-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter" />
@@ -1177,17 +1177,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<div>**⭐ Star this repository if you found it helpful!**
+<div align="center">
+  
+**⭐ Star this repository if you found it helpful!**
 
 Made with ❤️ using Flutter
 
+<p><a href="#top">⬆ Back on Top</a></p>
+
 </div>
-```plaintext
-<Actions>
-  <Action name="Create Widget Library" description="Create a comprehensive widget library with reusable components" />
-  <Action name="Add Animations Package" description="Implement advanced animations and transitions throughout the app" />
-  <Action name="Setup Firebase Integration" description="Add Firebase Analytics, Crashlytics, and Push Notifications" />
-  <Action name="Create Design System" description="Build a complete design system with tokens and component documentation" />
-  <Action name="Add Accessibility Features" description="Implement comprehensive accessibility features and screen reader support" />
-</Actions>
-```
