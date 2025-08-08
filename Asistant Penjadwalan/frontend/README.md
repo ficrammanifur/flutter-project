@@ -145,41 +145,41 @@ flutter build apk --release
 
 ```mermaid
 graph TD
-    A[📱 Flutter App]  B[🔄 API Service Call]
-    B  C[📡 HTTP Request]
-    C  D[🌐 Network Layer]
-    D  E[🔍 Check Network Connection]
+    A[📱 Flutter App] --> B[🔄 API Service Call]
+    B --> C[📡 HTTP Request]
+    C --> D[🌐 Network Layer]
+    D --> E[🔍 Check Network Connection]
     
-    E |✅ Connected| F[📤 Send Request to Server]
-    E |❌ No Connection| G[⚠️ Network Error]
+    E -->|✅ Connected| F[📤 Send Request to Server]
+    E -->|❌ No Connection| G[⚠️ Network Error]
     
-    F  H[🖥️ Flask Backend Server]
-    H  I[🛡️ Request Validation]
+    F --> H[🖥️ Flask Backend Server]
+    H --> I[🛡️ Request Validation]
     
-    I |✅ Valid| J[📊 Process Request]
-    I |❌ Invalid| K[🚫 400 Bad Request]
+    I -->|✅ Valid| J[📊 Process Request]
+    I -->|❌ Invalid| K[🚫 400 Bad Request]
     
-    J  L[🤖 Gemini AI Processing]
-    L  M[💾 Database Operations]
-    M  N[📦 JSON Response]
+    J --> L[🤖 Gemini AI Processing]
+    L --> M[💾 Database Operations]
+    M --> N[📦 JSON Response]
     
-    N  O[📡 HTTP Response]
-    O  P[📱 Flutter Receives Response]
+    N --> O[📡 HTTP Response]
+    O --> P[📱 Flutter Receives Response]
     
-    P  Q[🔍 Status Code Check]
+    P --> Q[🔍 Status Code Check]
     
-    Q |200 OK| R[✅ Parse JSON Data]
-    Q |4xx/5xx Error| S[❌ Handle Error]
+    Q -->|200 OK| R[✅ Parse JSON Data]
+    Q -->|4xx/5xx Error| S[❌ Handle Error]
     
-    R  T[🔄 Update UI State]
-    T  U[📱 Display Data to User]
+    R --> T[🔄 Update UI State]
+    T --> U[📱 Display Data to User]
     
-    S  V[📱 Show Error Message]
-    G  V
-    K  V
+    S --> V[📱 Show Error Message]
+    G --> V
+    K --> V
     
-    V  W[🔄 Retry Option]
-    W  B
+    V --> W[🔄 Retry Option]
+    W --> B
     
     style A fill:#e1f5fe
     style H fill:#f3e5f5
@@ -250,31 +250,31 @@ def chat_with_ai():
 ### Schedule Assistant API Endpoints Flow
 ```mermaid
 graph LR
-    A[📱 Flutter App]  B[🎯 API Endpoints]
+    A[📱 Flutter App] --> B[🎯 API Endpoints]
     
-    B  C[🔐 POST /signup]
-    B  D[🔑 POST /signin]
-    B  E[📅 POST /jadwal]
-    B  F[📋 GET /jadwal/user_id]
-    B  G[📆 GET /jadwal/hari-ini/user_id]
-    B  H[🤖 POST /api/chat]
-    B  I[🏥 GET /health]
+    B --> C[🔐 POST /signup]
+    B --> D[🔑 POST /signin]
+    B --> E[📅 POST /jadwal]
+    B --> F[📋 GET /jadwal/user_id]
+    B --> G[📆 GET /jadwal/hari-ini/user_id]
+    B --> H[🤖 POST /api/chat]
+    B --> I[🏥 GET /health]
     
-    C  J[👤 User Registration]
-    D  K[🔓 User Authentication]
-    E  L[➕ Add Schedule]
-    F  M[📊 All Schedules]
-    G  N[📅 Today Schedule]
-    H  O[🤖 AI Chat Response]
-    I  P[💚 System Status]
+    C --> J[👤 User Registration]
+    D --> K[🔓 User Authentication]
+    E --> L[➕ Add Schedule]
+    F --> M[📊 All Schedules]
+    G --> N[📅 Today Schedule]
+    H --> O[🤖 AI Chat Response]
+    I --> P[💚 System Status]
     
-    J  Q[📱 Auth Screen]
-    K  R[📱 Home Screen]
-    L  S[📱 Schedule Screen]
-    M  T[📱 Schedule List]
-    N  U[📱 Today View]
-    O  V[📱 Chat Interface]
-    P  W[📱 Status Indicator]
+    J --> Q[📱 Auth Screen]
+    K --> R[📱 Home Screen]
+    L --> S[📱 Schedule Screen]
+    M --> T[📱 Schedule List]
+    N --> U[📱 Today View]
+    O --> V[📱 Chat Interface]
+    P --> W[📱 Status Indicator]
     
     style C fill:#e3f2fd
     style H fill:#f3e5f5
@@ -287,25 +287,25 @@ graph LR
 ### HTTP Status Code Handling
 ```mermaid
 graph TD
-    A[📡 HTTP Response]  B[🔍 Status Code Check]
+    A[📡 HTTP Response] --> B[🔍 Status Code Check]
     
-    B  C[✅ 200 OK]
-    B  D[❌ 400 Bad Request]
-    B  E[🔒 401 Unauthorized]
-    B  F[🚫 404 Not Found]
-    B  G[💥 500 Server Error]
+    B --> C[✅ 200 OK]
+    B --> D[❌ 400 Bad Request]
+    B --> E[🔒 401 Unauthorized]
+    B --> F[🚫 404 Not Found]
+    B --> G[💥 500 Server Error]
     
-    C  H[📊 Process Data]
-    D  I[⚠️ Validation Error]
-    E  J[🔐 Authentication Required]
-    F  K[❓ Endpoint Not Found]
-    G  L[🛠️ Server Issue]
+    C --> H[📊 Process Data]
+    D --> I[⚠️ Validation Error]
+    E --> J[🔐 Authentication Required]
+    F --> K[❓ Endpoint Not Found]
+    G --> L[🛠️ Server Issue]
     
-    H  M[📱 Update UI]
-    I  N[📝 Show Form Errors]
-    J  O[🔑 Redirect to Login]
-    K  P[🔄 Check URL]
-    L  Q[🔄 Retry Later]
+    H --> M[📱 Update UI]
+    I --> N[📝 Show Form Errors]
+    J --> O[🔑 Redirect to Login]
+    K --> P[🔄 Check URL]
+    L --> Q[🔄 Retry Later]
     
     style C fill:#c8e6c9
     style D fill:#ffcdd2
@@ -319,22 +319,22 @@ graph TD
 ### API Error Handling Strategy
 ```mermaid
 graph TD
-    A[🚨 Error Occurred]  B[🔍 Error Type Check]
+    A[🚨 Error Occurred] --> B[🔍 Error Type Check]
     
-    B  C[🌐 Network Error]
-    B  D[📡 HTTP Error]
-    B  E[🤖 AI Service Error]
-    B  F[⏱️ Timeout Error]
+    B --> C[🌐 Network Error]
+    B --> D[📡 HTTP Error]
+    B --> E[🤖 AI Service Error]
+    B --> F[⏱️ Timeout Error]
     
-    C  G[📱 Show Offline Mode]
-    D  H[📝 Show Error Message]
-    E  I[🔄 Fallback Response]
-    F  J[🔄 Retry Request]
+    C --> G[📱 Show Offline Mode]
+    D --> H[📝 Show Error Message]
+    E --> I[🔄 Fallback Response]
+    F --> J[🔄 Retry Request]
     
-    G  K[💾 Use Cached Data]
-    H  L[🔄 Retry Option]
-    I  M[📱 Continue with Basic Features]
-    J  N[⏳ Show Loading]
+    G --> K[💾 Use Cached Data]
+    H --> L[🔄 Retry Option]
+    I --> M[📱 Continue with Basic Features]
+    J --> N[⏳ Show Loading]
     
     style A fill:#ffcdd2
     style G fill:#fff3e0
@@ -583,7 +583,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](./LICENSE
 
 ## 👤 Authors
 
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/yourusername)
+- **Ficrammanifur** - *Student* - [YourGitHub](https://github.com/ficrammanifur)
 
 ## 🙏 Acknowledgments
 
