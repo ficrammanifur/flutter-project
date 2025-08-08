@@ -71,7 +71,7 @@ python-dotenv==1.0.0
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/yourusername/schedule-assistant-app.git
+git clone https://github.com/ficrammanifur/flutter-project/tree/main/Asistant%20Penjadwalan.git
 cd schedule-assistant-app
 ```
 
