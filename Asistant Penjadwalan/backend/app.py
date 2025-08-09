@@ -1,4 +1,4 @@
-﻿from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
@@ -10,11 +10,13 @@ from db_config import (
     get_user_schedules, get_today_schedules, add_schedule,
     delete_schedule, save_chat_history, test_connection
 )
+import random
+import numpy as np
+from copy import deepcopy
 
 # Load environment variables
 load_dotenv()
 
-app = Flask
 app = Flask(__name__)
 CORS(app)
 
@@ -24,18 +26,11 @@ def initialize_gemini():
     try:
         genai.configure(api_key=os.getenv('GEMINI_API_KEY'))
         
-        # List of models to try in order of preference
         model_names = [
-            'gemini-2.5-flash',     # New model from quickstart
-            'gemini-1.5-flash',       # Current recommended model
-            'gemini-1.5-pro',         # Alternative model
-            'gemini-pro',            # Legacy model
-            'models/gemini-2.5-flash', # Full path version
-            'models/gemini-1.5-flash', # Full path version
-            'models/gemini-1.5-pro'    # Full path version
+            'gemini-2.5-flash', 'gemini-1.5-flash', 'gemini-1.5-pro', 'gemini-pro',
+            'models/gemini-2.5-flash', 'models/gemini-1.5-flash', 'models/gemini-1.5-pro'
         ]
         
-        # Try to find an available model
         available_models = []
         try:
             for model in genai.list_models():
@@ -44,7 +39,6 @@ def initialize_gemini():
         except Exception as e:
             print(f"[AI] Warning: Could not list models: {e}")
         
-        # Try each model until one works
         for model_name in model_names:
             try:
                 if available_models and model_name not in available_models:
@@ -94,13 +88,8 @@ def create_response(status, message, data=None):
 def get_indonesian_day(english_day):
     """Convert English day to Indonesian."""
     days = {
-        'Monday': 'Senin',
-        'Tuesday': 'Selasa',
-        'Wednesday': 'Rabu',
-        'Thursday': 'Kamis',
-        'Friday': 'Jumat',
-        'Saturday': 'Sabtu',
-        'Sunday': 'Minggu'
+        'Monday': 'Senin', 'Tuesday': 'Selasa', 'Wednesday': 'Rabu',
+        'Thursday': 'Kamis', 'Friday': 'Jumat', 'Saturday': 'Sabtu', 'Sunday': 'Minggu'
     }
     return days.get(english_day, english_day)
 
@@ -120,13 +109,110 @@ def validate_email(email):
     pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     return re.match(pattern, email) is not None
 
-# API Routes
+# Genetic Algorithm for Schedule Optimization
+def time_to_minutes(time_str):
+    """Convert time string (HH:MM) to minutes for easier comparison."""
+    try:
+        hours, minutes = map(int, time_str.split(':'))
+        return hours * 60 + minutes
+    except:
+        return 0
+
+def check_time_conflict(schedule1, schedule2):
+    """Check if two schedules conflict in time."""
+    if schedule1['hari'] != schedule2['hari']:
+        return False
+    start1, end1 = map(time_to_minutes, schedule1['waktu'].split('-'))
+    start2, end2 = map(time_to_minutes, schedule2['waktu'].split('-'))
+    return not (end1 <= start2 or end2 <= start1)
+
+def fitness_function(schedule_list, max_sks_per_day=12):
+    """Calculate fitness of a schedule arrangement."""
+    score = 100.0
+    sks_per_day = {}
+    
+    # Penalize time conflicts
+    for i, s1 in enumerate(schedule_list):
+        for s2 in schedule_list[i+1:]:
+            if check_time_conflict(s1, s2):
+                score -= 20.0
+    
+    # Penalize unbalanced SKS per day
+    for s in schedule_list:
+        day = s['hari']
+        sks_per_day[day] = sks_per_day.get(day, 0) + s['sks']
+    
+    for day, sks in sks_per_day.items():
+        if sks > max_sks_per_day:
+            score -= 10.0 * (sks - max_sks_per_day)
+        elif sks == 0:
+            score -= 5.0
+    
+    # Prefer morning schedules (optional, can be adjusted)
+    for s in schedule_list:
+        start_time = time_to_minutes(s['waktu'].split('-')[0])
+        if start_time > 12 * 60:  # After 12:00
+            score -= 2.0
+    
+    return max(score, 0.0)
+
+def crossover(parent1, parent2):
+    """Perform crossover between two parents."""
+    if len(parent1) <= 1:
+        return deepcopy(parent1), deepcopy(parent2)
+    split_point = random.randint(1, len(parent1)-1)
+    child1 = deepcopy(parent1[:split_point]) + deepcopy(parent2[split_point:])
+    child2 = deepcopy(parent2[:split_point]) + deepcopy(parent1[split_point:])
+    return child1, child2
+
+def mutate(schedule_list, available_times=['08:00-09:40', '10:00-11:40', '13:00-14:40', '15:00-16:40']):
+    """Mutate a schedule by changing time or day."""
+    if not schedule_list:
+        return schedule_list
+    schedule = random.choice(schedule_list)
+    if random.random() < 0.5:
+        schedule['hari'] = random.choice(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'])
+    else:
+        schedule['waktu'] = random.choice(available_times)
+    return schedule_list
+
+def genetic_algorithm(schedules, population_size=50, generations=100):
+    """Run genetic algorithm to optimize schedules."""
+    if not schedules:
+        return schedules
+    
+    population = [deepcopy(schedules) for _ in range(population_size)]
+    for i in range(population_size):
+        for schedule in population[i]:
+            schedule['hari'] = random.choice(['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'])
+            schedule['waktu'] = random.choice(['08:00-09:40', '10:00-11:40', '13:00-14:40', '15:00-16:40'])
+    
+    for _ in range(generations):
+        fitness_scores = [fitness_function(ind) for ind in population]
+        if not fitness_scores or max(fitness_scores) == 0:
+            break
+        
+        new_population = []
+        for _ in range(population_size // 2):
+            parent1 = random.choices(population, weights=fitness_scores)[0]
+            parent2 = random.choices(population, weights=fitness_scores)[0]
+            child1, child2 = crossover(parent1, parent2)
+            child1 = mutate(child1)
+            child2 = mutate(child2)
+            new_population.extend([child1, child2])
+        
+        population = new_population[:population_size]
+    
+    best_schedule = max(population, key=fitness_function)
+    return best_schedule
+
+# Existing Routes (unchanged, only showing relevant ones for brevity)
 @app.route('/')
 def index():
     """Main endpoint for testing server."""
     return jsonify({
-        'message': 'API Flask Auth and Schedule Service with Gemini AI Running',
-        'version': '2.1',
+        'message': 'API Flask Auth and Schedule Service with Gemini AI and GA Running',
+        'version': '2.2',
         'status': 'active',
         'ai_model': model_name if model_name else 'unavailable',
         'timestamp': datetime.now().isoformat()
@@ -145,7 +231,6 @@ def health_check():
         'timestamp': datetime.now().isoformat()
     })
 
-# ========== AUTHENTICATION ==========
 @app.route('/signup', methods=['POST'])
 @app.route('/daftar', methods=['POST'])
 def signup():
@@ -212,7 +297,6 @@ def signin():
         print(f"[ERROR] Signin: {e}")
         return jsonify(create_response('error', 'Terjadi kesalahan server')), 500
 
-# ========== SCHEDULE MANAGEMENT ==========
 @app.route('/jadwal', methods=['POST'])
 def tambah_jadwal():
     """Endpoint to add a new schedule."""
@@ -226,9 +310,21 @@ def tambah_jadwal():
         if not is_valid:
             return jsonify(create_response('error', message)), 400
 
-        valid_days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        valid_days_indonesia = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']
+        valid_days_english = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        valid_days = valid_days_english + valid_days_indonesia
+
         if data['hari'] not in valid_days:
-            return jsonify(create_response('error', 'Hari tidak valid')), 400
+            return jsonify(create_response('error', 'Hari tidak valid. Gunakan format Senin-Sunday atau Monday-Sunday')), 400
+
+        hari = data['hari']
+        if hari in valid_days_indonesia:
+            days_map = {
+                'Senin': 'Monday', 'Selasa': 'Tuesday', 'Rabu': 'Wednesday',
+                'Kamis': 'Thursday', 'Jumat': 'Friday', 'Sabtu': 'Saturday', 'Minggu': 'Sunday'
+            }
+            hari = days_map.get(hari, hari)
+            data['hari'] = hari
 
         try:
             sks = int(data['sks'])
@@ -251,7 +347,7 @@ def tambah_jadwal():
     except Exception as e:
         print(f"[ERROR] Tambah jadwal: {e}")
         return jsonify(create_response('error', 'Terjadi kesalahan server')), 500
-
+    
 @app.route('/jadwal/<int:user_id>', methods=['GET'])
 def dapatkan_jadwal(user_id):
     """Endpoint to get all user schedules."""
@@ -361,7 +457,6 @@ def tambah_jadwal_batch():
         print(f"[ERROR] Tambah jadwal batch: {e}")
         return jsonify(create_response('error', 'Terjadi kesalahan server')), 500
 
-# ========== GEMINI AI CHAT ASSISTANT ==========
 def format_schedule_for_ai(schedules):
     """Format schedule data for AI context."""
     if not schedules:
@@ -424,6 +519,7 @@ Tugas kamu:
 5. Jika tidak ada jadwal, berikan respon yang membantu
 6. Jika ditanya jadwal "hari ini", berikan jadwal untuk hari {current_day_indo}
 7. Berikan informasi lengkap seperti waktu, mata kuliah, dosen, dan kelas
+8. Jika pengguna meminta optimasi jadwal, sarankan untuk menggunakan fitur optimasi otomatis
 
 Pertanyaan pengguna: {message}
 
@@ -647,7 +743,110 @@ def get_user_stats(user_id):
         print(f"[ERROR] Get stats: {e}")
         return jsonify(create_response('error', 'Terjadi kesalahan server')), 500
 
-# ========== ERROR HANDLERS ==========
+# New Endpoint for Schedule Optimization with GA
+@app.route('/api/optimize-schedule', methods=['POST'])
+def optimize_schedule():
+    """Endpoint to optimize user schedule using Genetic Algorithm and Gemini AI."""
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify(create_response('error', 'Data request tidak valid')), 400
+
+        user_id = data.get('user_id')
+        if not user_id:
+            return jsonify(create_response('error', 'User ID diperlukan')), 400
+
+        # Get current schedules
+        schedules = get_user_schedules(user_id) or []
+        if not schedules:
+            return jsonify(create_response('error', 'Tidak ada jadwal untuk dioptimasi')), 400
+
+        # Run Genetic Algorithm
+        optimized_schedules = genetic_algorithm(schedules)
+        optimized_context = format_schedule_for_ai(optimized_schedules)
+
+        # Prepare Gemini AI prompt with optimized schedule
+        current_day_eng = datetime.now().strftime('%A')
+        current_day_indo = get_indonesian_day(current_day_eng)
+        current_time = datetime.now().strftime('%H:%M')
+        current_date = datetime.now().strftime('%Y-%m-%d')
+
+        original_context = format_schedule_for_ai(schedules)
+        system_prompt = f"""
+Kamu adalah asisten jadwal kuliah yang membantu mahasiswa mengelola jadwal mereka.
+Informasi saat ini:
+- Hari: {current_day_indo} ({current_date})
+- Waktu: {current_time}
+
+Jadwal Asli Pengguna:
+{original_context}
+
+Jadwal yang Dioptimasi (menggunakan algoritma genetika):
+{optimized_context}
+
+Tugas kamu:
+1. Berikan penjelasan singkat mengapa jadwal yang dioptimasi lebih baik (misalnya, tidak ada konflik waktu, lebih seimbang)
+2. Tampilkan jadwal yang dioptimasi dalam format yang mudah dibaca
+3. Berikan saran tambahan untuk pengguna berdasarkan jadwal yang dioptimasi
+4. Gunakan bahasa Indonesia yang natural dan friendly
+5. Jangan ubah logika pengolahan jadwal di database
+
+Berikan jawaban yang singkat, jelas, dan membantu.
+"""
+
+        if not ensure_model_available():
+            return jsonify(create_response('error', 'AI service tidak tersedia saat ini')), 503
+
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                response = model.generate_content(
+                    system_prompt,
+                    generation_config=genai.types.GenerationConfig(
+                        temperature=0.7,
+                        max_output_tokens=1000
+                    )
+                )
+                ai_response = response.text
+                
+                try:
+                    save_chat_history(user_id, "Optimasi jadwal", ai_response)
+                except Exception as save_error:
+                    print(f"[WARNING] Failed to save chat history: {save_error}")
+                
+                return jsonify(create_response('success', ai_response, {
+                    'type': 'optimized_schedule',
+                    'current_day': current_day_indo,
+                    'current_time': current_time,
+                    'model_used': model_name,
+                    'optimized_schedules': optimized_schedules
+                })), 200
+                
+            except Exception as gemini_error:
+                print(f"[ERROR] Gemini AI attempt {attempt + 1}: {gemini_error}")
+                
+                if attempt == max_retries - 1:
+                    model, model_name = initialize_gemini()
+                    fallback_response = f"""
+Jadwal telah dioptimasi menggunakan algoritma genetika. Berikut adalah jadwal yang dioptimasi:
+{optimized_context}
+Silakan periksa jadwal ini untuk memastikan tidak ada konflik waktu dan beban SKS seimbang.
+"""
+                    return jsonify(create_response('success', fallback_response, {
+                        'type': 'fallback_optimized',
+                        'current_day': current_day_indo,
+                        'current_time': current_time,
+                        'optimized_schedules': optimized_schedules
+                    })), 200
+                
+                import time
+                time.sleep(1)
+
+    except Exception as e:
+        print(f"[ERROR] Optimize schedule: {e}")
+        return jsonify(create_response('error', 'Terjadi kesalahan sistem')), 500
+
+# Error Handlers
 @app.errorhandler(404)
 def not_found(error):
     return jsonify(create_response('error', 'Endpoint tidak ditemukan')), 404
@@ -660,7 +859,7 @@ def method_not_allowed(error):
 def internal_error(error):
     return jsonify(create_response('error', 'Terjadi kesalahan server internal')), 500
 
-# ========== MAIN APPLICATION ==========
+# Main Application
 if __name__ == '__main__':
     try:
         init_database()
