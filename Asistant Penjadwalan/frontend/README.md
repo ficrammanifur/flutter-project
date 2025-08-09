@@ -7,34 +7,6 @@
   <img src="https://img.shields.io/badge/REST-API-orange?style=for-the-badge&logo=api" />
 </p>
 
-<h1 align="center"> Schedule Assistant App 🗓️🤖<p align="center">  <img src="https://img.shields.io/badge/Flutter-Mobile%20App-blue?style=for-the-badge&logo=flutter" />  <img src="https://img.shields.io/badge/Python-Flask%20API-green?style=for-the-badge&logo=python" />  <img src="https://img.shields.io/badge/Gemini-AI%20Assistant-purple?style=for-the-badge&logo=google" />  <img src="https://img.shields.io/badge/REST-API-orange?style=for-the-badge&logo=api" /></p>## 🎯 OverviewSchedule Assistant App adalah aplikasi mobile berbasis Flutter dengan backend Flask yang mengintegrasikan **Gemini AI** untuk manajemen jadwal cerdas. Aplikasi ini menyediakan asisten AI yang dapat membantu pengguna dalam mengatur, mengelola, dan mengoptimalkan jadwal harian mereka dengan antarmuka yang intuitif dan responsif.## ✨ Fitur Utama### 📱 Mobile Interface- **Smart Schedule Management** - Buat, lihat, dan kelola jadwal harian dengan mudah- **AI-Powered Chat Interface** - Interaksi natural language dengan asisten Gemini AI- **Today's Quick View** - Akses cepat ke jadwal hari ini dengan nama hari Indonesia- **Batch Operations** - Tambah multiple jadwal sekaligus untuk efisiensi- **Secure Authentication** - Sistem registrasi dan login yang aman- **Responsive Design** - Optimal di semua perangkat mobile### 🤖 AI Features- **Gemini AI Integration** - Multiple model fallback system untuk reliability- **Intelligent Scheduling** - AI membantu optimasi dan saran jadwal- **Natural Language Processing** - Chat dengan AI menggunakan bahasa natural- **Localized Responses** - Respons AI dalam bahasa Indonesia- **Context-Aware Assistance** - AI memahami konteks jadwal pengguna### 🛡️ Backend Features- **Flask REST API** - Backend service dengan endpoint terstruktur- **Comprehensive Error Handling** - Graceful degradation saat AI tidak tersedia- **Health Monitoring** - System status checks untuk semua komponen- **Database Flexibility** - Support SQLite dan MySQL- **CORS Support** - Cross-origin resource sharing untuk web integration
-
-## 📈 Use Case Diagram
-
-Berikut adalah diagram use case yang menggambarkan interaksi antara pengguna dan sistem Schedule Assistant App.
-
-```mermaid title="Use Case Diagram: Schedule Assistant App" type="diagram"
-%% Use Case Diagram for Schedule Assistant App
-graph TD
-    actor "Pengguna" as User
-
-    rectangle "Schedule Assistant App" {
-        User  (Registrasi Akun)
-        User  (Login ke Akun)
-        User  (Kelola Jadwal)
-        User  (Lihat Jadwal Hari Ini)
-        User  (Chat dengan Asisten AI)
-
-        (Kelola Jadwal) <--- (Tambah Jadwal)
-        (Kelola Jadwal) <--- (Lihat Semua Jadwal)
-        (Kelola Jadwal) <--- (Hapus Jadwal)
-        (Kelola Jadwal) <--- (Tambah Jadwal Batch)
-
-        (Chat dengan Asisten AI) ..> (Dapatkan Saran Optimasi Jadwal) : <<extends>>
-        (Chat dengan Asisten AI) ..> (Dapatkan Penjelasan Jadwal) : <<extends>>
-    }
-```
-
 ## 🎯 Overview
 
 Schedule Assistant App adalah aplikasi mobile berbasis Flutter dengan backend Flask yang mengintegrasikan **Gemini AI** untuk manajemen jadwal cerdas. Aplikasi ini menyediakan asisten AI yang dapat membantu pengguna dalam mengatur, mengelola, dan mengoptimalkan jadwal harian mereka dengan antarmuka yang intuitif dan responsif.
@@ -165,6 +137,32 @@ flutter run --debug
 
 # Build APK
 flutter build apk --release
+```
+
+## 📈 Use Case Diagram
+
+Berikut adalah diagram use case yang menggambarkan interaksi antara pengguna dan sistem Schedule Assistant App.
+
+```mermaid title="Use Case Diagram: Schedule Assistant App" type="diagram"
+%% Use Case Diagram for Schedule Assistant App
+graph TD
+    actor "Pengguna" as User
+
+    rectangle "Schedule Assistant App" {
+        User  (Registrasi Akun)
+        User  (Login ke Akun)
+        User  (Kelola Jadwal)
+        User  (Lihat Jadwal Hari Ini)
+        User  (Chat dengan Asisten AI)
+
+        (Kelola Jadwal) <--- (Tambah Jadwal)
+        (Kelola Jadwal) <--- (Lihat Semua Jadwal)
+        (Kelola Jadwal) <--- (Hapus Jadwal)
+        (Kelola Jadwal) <--- (Tambah Jadwal Batch)
+
+        (Chat dengan Asisten AI) ..> (Dapatkan Saran Optimasi Jadwal) : <<extends>>
+        (Chat dengan Asisten AI) ..> (Dapatkan Penjelasan Jadwal) : <<extends>>
+    }
 ```
 
 ## 📡 API Endpoints Structure
@@ -417,14 +415,15 @@ class ApiService {
 ```
 schedule-assistant-app/
 ├── backend/
-│   ├── .env                    # Environment variables
-│   ├── app.py                  # Main Flask application
-│   ├── db_config.py            # Database configuration
-│   ├── requirements.txt        # Python dependencies
-│   └── services/
-│       ├── gemini_service.py   # Gemini AI integration
-│       └── auth_service.py     # Authentication logic
-├── lib/
+│   ├── scripts/
+│   │   ├── create_database.sql
+│   │   └── seed_data.sql   
+│   ├── .env                  # Gemini API, Database Configuration, Flask Configuration
+│   ├── app.py                # Main Flask application
+│   ├── db_config.py          # Database configuration and utilities
+│   └── requirements.txt      # Python dependencies
+└── frontend/
+│   lib/
 │   ├── main.dart              # App entry point
 │   ├── constants.dart         # App constants
 │   ├── pages/                 # UI screens
