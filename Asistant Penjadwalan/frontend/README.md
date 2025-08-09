@@ -144,30 +144,50 @@ flutter build apk --release
 Berikut adalah diagram use case yang menggambarkan interaksi antara pengguna dan sistem Schedule Assistant App.
 
 ```mermaid title="Use Case Diagram: Schedule Assistant App" type="diagram"
+%% Use Case Diagram for Schedule Assistant App
 graph TD
-    actor "Pengguna" as User
+    User["👤 Pengguna"]
 
-    rectangle "Schedule Assistant App" {
-        usecase (Registrasi Akun) as UC_Registrasi
-        usecase (Login ke Akun) as UC_Login
-        usecase (Kelola Jadwal) as UC_KelolaJadwal
-        usecase (Lihat Jadwal Hari Ini) as UC_LihatJadwalHariIni
-        usecase (Chat dengan Asisten AI) as UC_ChatAI
+    subgraph "📅 Schedule Assistant App"
+        Reg(📝 Registrasi Akun)
+        Login(🔑 Login ke Akun)
+        Kelola(🗓️ Kelola Jadwal)
+        LihatHari(👀 Lihat Jadwal Hari Ini)
+        Chat(💬 Chat dengan Asisten AI)
+        Tambah(➕ Tambah Jadwal)
+        LihatSemua(📋 Lihat Semua Jadwal)
+        Hapus(🗑️ Hapus Jadwal)
+        Batch(📦 Tambah Jadwal Batch)
+        Saran(💡 Dapatkan Saran Optimasi Jadwal)
+        Penjelasan(❓ Dapatkan Penjelasan Jadwal)
+    end
 
-        UC_KelolaJadwal <--- (Tambah Jadwal)
-        UC_KelolaJadwal <--- (Lihat Semua Jadwal)
-        UC_KelolaJadwal <--- (Hapus Jadwal)
-        UC_KelolaJadwal <--- (Tambah Jadwal Batch)
+    User --> Reg
+    User --> Login
+    User --> Kelola
+    User --> LihatHari
+    User --> Chat
 
-        UC_ChatAI ..> (Dapatkan Saran Optimasi Jadwal) : <<extends>>
-        UC_ChatAI ..> (Dapatkan Penjelasan Jadwal) : <<extends>>
-    }
+    Kelola -- "<<include>>" --> Tambah
+    Kelola -- "<<include>>" --> LihatSemua
+    Kelola -- "<<include>>" --> Hapus
+    Kelola -- "<<include>>" --> Batch
 
-    User --> UC_Registrasi
-    User --> UC_Login
-    User --> UC_KelolaJadwal
-    User --> UC_LihatJadwalHariIni
-    User --> UC_ChatAI
+    Saran -. "<<extend>>" .-> Chat
+    Penjelasan -. "<<extend>>" .-> Chat
+
+    style User fill:#e1f5fe,stroke:#000
+    style Reg fill:#f3e5f5,stroke:#000
+    style Login fill:#f3e5f5,stroke:#000
+    style Kelola fill:#fff3e0,stroke:#000
+    style LihatHari fill:#fff3e0,stroke:#000
+    style Chat fill:#fff3e0,stroke:#000
+    style Tambah fill:#e8f5e8,stroke:#000
+    style LihatSemua fill:#e8f5e8,stroke:#000
+    style Hapus fill:#e8f5e8,stroke:#000
+    style Batch fill:#e8f5e8,stroke:#000
+    style Saran fill:#e8f5e8,stroke:#000
+    style Penjelasan fill:#e8f5e8,stroke:#000
 ```
 
 ## 📡 API Endpoints Structure
