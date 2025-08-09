@@ -143,26 +143,28 @@ flutter build apk --release
 
 Berikut adalah diagram use case yang menggambarkan interaksi antara pengguna dan sistem Schedule Assistant App.
 
-```mermaid
-%% Use Case Diagram for Schedule Assistant App
-graph TD
-    actor "Pengguna" as User
+```graph TD
+    subgraph "Schedule Assistant App"
+        Registrasi[Registrasi Akun]
+        Login[Login ke Akun]
+        Kelola[Kelola Jadwal]
+        HariIni[Lihat Jadwal Hari Ini]
+        Chat[Chat dengan Asisten AI]
 
-    rectangle "Schedule Assistant App" {
-        User  (Registrasi Akun)
-        User  (Login ke Akun)
-        User  (Kelola Jadwal)
-        User  (Lihat Jadwal Hari Ini)
-        User  (Chat dengan Asisten AI)
+        Kelola --> Tambah[Tambah Jadwal]
+        Kelola --> Lihat[Lihat Semua Jadwal]
+        Kelola --> Hapus[Hapus Jadwal]
+        Kelola --> Batch[Tambah Jadwal Batch]
 
-        (Kelola Jadwal) <--- (Tambah Jadwal)
-        (Kelola Jadwal) <--- (Lihat Semua Jadwal)
-        (Kelola Jadwal) <--- (Hapus Jadwal)
-        (Kelola Jadwal) <--- (Tambah Jadwal Batch)
+        Chat -.-> Saran[Dapatkan Saran Optimasi Jadwal]
+        Chat -.-> Penjelasan[Dapatkan Penjelasan Jadwal]
+    end
 
-        (Chat dengan Asisten AI) ..> (Dapatkan Saran Optimasi Jadwal) : <<extends>>
-        (Chat dengan Asisten AI) ..> (Dapatkan Penjelasan Jadwal) : <<extends>>
-    }
+    User((Pengguna)) --> Registrasi
+    User --> Login
+    User --> Kelola
+    User --> HariIni
+    User --> Chat
 ```
 
 ## 📡 API Endpoints Structure
