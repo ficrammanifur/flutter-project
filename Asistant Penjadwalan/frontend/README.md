@@ -143,7 +143,7 @@ flutter build apk --release
 
 Berikut adalah diagram use case yang menggambarkan interaksi antara pengguna dan sistem Schedule Assistant App.
 
-```mermaid title="Use Case Diagram: Schedule Assistant App" type="diagram"
+```mermaid
 %% Use Case Diagram for Schedule Assistant App
 graph TD
     actor "Pengguna" as User
