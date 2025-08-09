@@ -27,6 +27,7 @@ Schedule Assistant App adalah aplikasi mobile berbasis Flutter dengan backend Fl
 - **Natural Language Processing** - Chat dengan AI menggunakan bahasa natural
 - **Localized Responses** - Respons AI dalam bahasa Indonesia
 - **Context-Aware Assistance** - AI memahami konteks jadwal pengguna
+- **AI-Powered Schedule Optimization** - Menggunakan algoritma genetik untuk mengoptimalkan jadwal berdasarkan konflik waktu, beban SKS, dan preferensi waktu pagi
 
 ### 🛡️ Backend Features
 - **Flask REST API** - Backend service dengan endpoint terstruktur
@@ -48,6 +49,7 @@ Schedule Assistant App adalah aplikasi mobile berbasis Flutter dengan backend Fl
 - Google Gemini API key
 - Flask framework
 - Virtual environment (recommended)
+- MySQL Server 5.7+ (atau SQLite untuk development lokal)
 
 ### Dependencies
 
@@ -65,6 +67,8 @@ Flask==2.3.3
 Flask-CORS==4.0.0
 google-generativeai==0.3.0
 python-dotenv==1.0.0
+mysql-connector-python==8.0.33
+numpy==1.26.4
 ```
 
 ## 🚀 Installation
@@ -98,7 +102,25 @@ Create a `.env` file in backend directory:
 ```env
 GEMINI_API_KEY=your_gemini_api_key_here
 FLASK_DEBUG=True
-DATABASE_URL=sqlite:///schedule.db
+DATABASE_URL=sqlite:///schedule.db  # Atau gunakan MySQL: mysql://root:password@localhost/sai
+DB_HOST=localhost
+DB_NAME=sai
+DB_USER=root
+DB_PASSWORD=your_mysql_password
+DB_PORT=3306
+GOOGLE_API_KEY=your_google_gemini_api_key
+```
+#### Database Setup
+Gunakan salah satu opsi berikut:
+### Option A: Using SQL files
+```bash
+mysql -u root -p < scripts/create_database.sql
+mysql -u root -p sai < scripts/seed_data.sql
+```
+
+### Option B: Using Python script
+```bash
+python db_config.py
 ```
 
 #### Run Flask Server
@@ -119,7 +141,7 @@ flutter packages pub run build_runner build
 ```
 
 #### Configure API Base URL
-Update `lib/constants.dart`:
+Update `lib/services.dart`:
 ```dart
 // For emulator
 const String baseUrl = 'http://10.0.2.2:5000';
@@ -518,6 +540,207 @@ schedule-assistant-app/
 ### 🧪 Utility
 - `GET /health` - System health check
   - Response: `{status, ai_status, db_status, timestamp}`
+
+---
+
+# Core Algorithms for Schedule Optimization
+
+## Core Algorithms
+
+The SAI Backend leverages a combination of algorithms to provide its intelligent scheduling capabilities:
+
+### Genetic Algorithm (GA) for Schedule Optimization
+
+The primary algorithm used for optimizing class schedules is the Genetic Algorithm. This algorithm is implemented in the `/api/optimize-schedule` endpoint (or similar internal function) to automatically rearrange schedules, considering various constraints and preferences:
+
+*   **Conflict Resolution**: Penalizes schedules with overlapping class times.
+*   **SKS Load Balancing**: Penalizes schedules where the daily SKS (credit units) load exceeds a predefined maximum (e.g., 12 SKS per day).
+*   **Morning Time Preference**: Favors morning schedules by applying a penalty to classes scheduled in the afternoon (>12:00).
+
+**Key GA Components in the Code:**
+
+*   **Fitness Function (`fitness_function()`):** Evaluates the quality of a given schedule. It assigns scores based on conflicts, SKS overload, and time preferences.
+
+    ```python
+    def fitness_function(schedule_list, max_sks_per_day=12):
+        # Calculates the quality score of a schedule
+        # -20 points for each time conflict
+        # -10 points per SKS if exceeding max_sks_per_day
+        # -2 points for afternoon schedules (>12:00)
+    ```
+Tentu, berikut adalah file `README.md` yang hanya berisi bagian "7. Core Algorithms" yang Anda minta:
+
+```markdown
+# Core Algorithms for Schedule Optimization
+
+## 7. Core Algorithms
+
+The SAI Backend leverages a combination of algorithms to provide its intelligent scheduling capabilities:
+
+### 7.1. Genetic Algorithm (GA) for Schedule Optimization
+
+The primary algorithm used for optimizing class schedules is the Genetic Algorithm. This algorithm is implemented in the `/api/optimize-schedule` endpoint (or similar internal function) to automatically rearrange schedules, considering various constraints and preferences:
+
+*   **Conflict Resolution**: Penalizes schedules with overlapping class times.
+*   **SKS Load Balancing**: Penalizes schedules where the daily SKS (credit units) load exceeds a predefined maximum (e.g., 12 SKS per day).
+*   **Morning Time Preference**: Favors morning schedules by applying a penalty to classes scheduled in the afternoon (>12:00).
+
+**Key GA Components in the Code:**
+
+*   **Fitness Function (`fitness_function()`):** Evaluates the quality of a given schedule. It assigns scores based on conflicts, SKS overload, and time preferences.
+
+    ```python
+    def fitness_function(schedule_list, max_sks_per_day=12):
+        # Calculates the quality score of a schedule
+        # -20 points for each time conflict
+        # -10 points per SKS if exceeding max_sks_per_day
+        # -2 points for afternoon schedules (>12:00)
+```
+
+- **Crossover (`crossover()`):** Combines genetic material (schedule parts) from two parent schedules to create new offspring schedules.
+
+```python
+def crossover(parent1, parent2):
+    # Combines two parent schedules at a random point
+```
+
+
+- **Mutation (`mutate()`):** Introduces random changes (e.g., altering the day/time of a course) to maintain genetic diversity and explore new solutions.
+
+```python
+def mutate(schedule_list):
+    # Randomly changes the day/time of one course
+```
+
+
+- **Main Algorithm (`genetic_algorithm()`):** Orchestrates the GA process, including population initialization, fitness-based selection, crossover, and mutation over a specified number of generations.
+
+```python
+def genetic_algorithm(schedules, population_size=50, generations=100):
+    # Initializes a random population
+    # Performs fitness-based selection
+    # Applies crossover and mutation
+    # Returns the best schedule found
+```
+
+**GA Workflow in the Code:**
+
+- **Input**: Raw schedule data from the database.
+- **Process**:
+
+- An initial population of 50 random schedule variations is generated.
+- Each schedule is evaluated using the `fitness_function`.
+- Through 100 generations, selection, crossover, and mutation operations are applied.
+
+- **Output**: An optimized schedule that aims for:
+
+- Minimal time conflicts.
+- Even distribution of SKS.
+- Prioritization of morning class times.
+
+Tentu, berikut adalah file `README.md` yang hanya berisi bagian "7. Core Algorithms" yang Anda minta:
+
+```markdown
+# Core Algorithms for Schedule Optimization
+
+## 7. Core Algorithms
+
+The SAI Backend leverages a combination of algorithms to provide its intelligent scheduling capabilities:
+
+### 7.1. Genetic Algorithm (GA) for Schedule Optimization
+
+The primary algorithm used for optimizing class schedules is the Genetic Algorithm. This algorithm is implemented in the `/api/optimize-schedule` endpoint (or similar internal function) to automatically rearrange schedules, considering various constraints and preferences:
+
+*   **Conflict Resolution**: Penalizes schedules with overlapping class times.
+*   **SKS Load Balancing**: Penalizes schedules where the daily SKS (credit units) load exceeds a predefined maximum (e.g., 12 SKS per day).
+*   **Morning Time Preference**: Favors morning schedules by applying a penalty to classes scheduled in the afternoon (>12:00).
+
+**Key GA Components in the Code:**
+
+*   **Fitness Function (`fitness_function()`):** Evaluates the quality of a given schedule. It assigns scores based on conflicts, SKS overload, and time preferences.
+
+    ```python
+    def fitness_function(schedule_list, max_sks_per_day=12):
+        # Calculates the quality score of a schedule
+        # -20 points for each time conflict
+        # -10 points per SKS if exceeding max_sks_per_day
+        # -2 points for afternoon schedules (>12:00)
+```
+
+- **Crossover (`crossover()`):** Combines genetic material (schedule parts) from two parent schedules to create new offspring schedules.
+
+```python
+def crossover(parent1, parent2):
+    # Combines two parent schedules at a random point
+```
+
+
+- **Mutation (`mutate()`):** Introduces random changes (e.g., altering the day/time of a course) to maintain genetic diversity and explore new solutions.
+
+```python
+def mutate(schedule_list):
+    # Randomly changes the day/time of one course
+```
+
+
+- **Main Algorithm (`genetic_algorithm()`):** Orchestrates the GA process, including population initialization, fitness-based selection, crossover, and mutation over a specified number of generations.
+
+```python
+def genetic_algorithm(schedules, population_size=50, generations=100):
+    # Initializes a random population
+    # Performs fitness-based selection
+    # Applies crossover and mutation
+    # Returns the best schedule found
+```
+
+
+
+
+**GA Workflow in the Code:**
+
+- **Input**: Raw schedule data from the database.
+- **Process**:
+
+- An initial population of 50 random schedule variations is generated.
+- Each schedule is evaluated using the `fitness_function`.
+- Through 100 generations, selection, crossover, and mutation operations are applied.
+
+
+
+- **Output**: An optimized schedule that aims for:
+
+- Minimal time conflicts.
+- Even distribution of SKS.
+- Prioritization of morning class times.
+
+
+
+
+
+### Supporting Algorithms
+
+- **Google Gemini AI**: Used to provide natural language explanations and insights about the optimized schedules. The code includes fallback models like `gemini-1.5-flash` and `gemini-1.5-pro`.
+- **Password Hashing**: `werkzeug.security` is used for secure password hashing (PBKDF2 with salt) for user authentication.
+
+```python
+from werkzeug.security import generate_password_hash, check_password_hash
+```
+
+- **Email Validation**: Regular expressions are used to validate email formats during user registration.
+
+```python
+def validate_email(email):
+    # Regex pattern for email validation
+```
+
+- **Time Conversion**: Utility functions convert time formats (e.g., `"HH:MM"` to minutes) for easier calculation and comparison within the scheduling logic.
+
+```python
+def time_to_minutes(time_str):
+    # Converts "HH:MM" format to minutes
+```
+
+---
 
 ## 🔧 Configuration
 
