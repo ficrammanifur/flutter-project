@@ -258,22 +258,37 @@ graph TD
     style CadangkanSistem fill:#e8f5e8,stroke:#000
 ```
 
-### Aktor dan Use Case
+## 🎭 Aktor dan Use Case
 
-**Aktor:**
-- **Pemilik Toko**: Pengguna utama yang mengelola inventaris dan melihat ramalan
-- **Analisis Data**: Pengguna teknis yang mengonfigurasi model dan menganalisis tren
-- **Admin Sistem**: Mengelola akun pengguna dan pemeliharaan sistem
+### 👥 Aktor
+- **Pemilik Toko** 🛒: Pengguna utama yang mengelola inventaris dan melihat ramalan  
+- **Analis Data** 📊: Pengguna teknis yang mengonfigurasi model dan menganalisis tren  
+- **Admin Sistem** 🖥️: Mengelola akun pengguna dan pemeliharaan sistem  
 
-**Use Cases:**
-1. **Lihat Ramalan Inventaris**: Menampilkan kebutuhan inventaris yang diprediksi berdasarkan model ARIMA
-2. **Buat Laporan**: Membuat laporan komprehensif tentang tren inventaris dan penjualan
-3. **Masukkan Data Penjualan**: Memasukkan data penjualan historis untuk pelatihan model
-4. **Konfigurasi Model ARIMA**: Menyiapkan dan menyetel parameter ARIMA (p, d, q)
-5. **Analisis Tren**: Melakukan analisis statistik pada pola penjualan dan inventaris
-6. **Kelola Akun Pengguna**: Mengelola pendaftaran pengguna, izin, dan profil
-7. **Ekspor Data**: Mengekspor ramalan dan laporan dalam berbagai format
-8. **SCadangkan Sistem**: Menjaga integritas data dan pemulihan sistem
+### 📌 Use Case
+1. **Lihat Ramalan Inventaris** 🔮  
+   Menampilkan kebutuhan inventaris yang diprediksi berdasarkan model ARIMA  
+
+2. **Buat Laporan** 📝  
+   Membuat laporan komprehensif tentang tren inventaris dan penjualan  
+
+3. **Masukkan Data Penjualan** 💾  
+   Memasukkan data penjualan historis untuk pelatihan model  
+
+4. **Konfigurasi Model ARIMA** ⚙️  
+   Menyiapkan dan menyetel parameter ARIMA `(p, d, q)`  
+
+5. **Analisis Tren** 📈  
+   Melakukan analisis statistik pada pola penjualan dan inventaris  
+
+6. **Kelola Akun Pengguna** 👤  
+   Mengelola pendaftaran pengguna, izin, dan profil  
+
+7. **Ekspor Data** 📤  
+   Mengekspor ramalan dan laporan dalam berbagai format  
+
+8. **Cadangkan Sistem** 🔐  
+   Menjaga integritas data dan pemulihan sistem  
 
 ## Class Diagram
 
