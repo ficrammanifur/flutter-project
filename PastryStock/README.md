@@ -134,8 +134,10 @@ cd arima-analytics-app
 python -m venv venv
 
 # Activate virtual environment
-# Windows:
-venv\\Scripts\\activate
+
+# Powershell:
+.\venv\Scripts\Activate.ps1
+
 # macOS/Linux:
 source venv/bin/activate
 
@@ -164,7 +166,6 @@ python db_config.py
 ```bash
 python app.py
 ```
-Server akan berjalan di `http://localhost:5000`
 
 ### 3. Mobile App Setup
 
