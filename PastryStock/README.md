@@ -281,126 +281,133 @@ The class diagram illustrates the main classes and their relationships in the AR
 
 ```mermaid
 classDiagram
-    class ARIMAModel {
+    class ModelARIMA {
         -int p
         -int d
         -int q
-        -ARIMAResults model
-        +fit(data: List)
-        +predict(steps: int)
-        +evaluate(): Dict
+        -HasilARIMA model
+        +latih(data: Daftar)
+        +prediksi(langkah: int)
+        +evaluasi(): Kamus
     }
     
-    class Inventory {
-        -String item_id
-        -String item_name
-        -int current_stock
-        -float unit_price
-        -String category
-        +updateStock(quantity: int)
-        +getStockLevel(): int
-        +calculateValue(): float
+    class Inventaris {
+        -String id_barang
+        -String nama_barang
+        -int stok_saat_ini
+        -float harga_satuan
+        -String kategori
+        +perbaruiStok(kuantitas: int)
+        +ambilTingkatStok(): int
+        +hitungNilai(): float
     }
     
-    class Forecast {
-        -String forecast_id
-        -String item_id
-        -List predicted_values
-        -Dict confidence_interval
-        +generateForecast()
-        +getAccuracy(): float
-        +exportResults(): Dict
+    class Ramalan {
+        -String id_ramalan
+        -String id_barang
+        -Daftar nilai_prediksi
+        -Kamus interval_kepercayaan
+        +buatRamalan()
+        +ambilAkurasi(): float
+        +eksporHasil(): Kamus
     }
     
-    class DataAnalyzer {
-        -String data_source
-        -String analysis_type
-        -Dict results
-        -List trends
-        +loadData(source: String)
-        +analyzeTrends(): List
-        +generateInsights(): Dict
-        +exportReport(): String
+    class PenganalisisData {
+        -String sumber_data
+        -String jenis_analisis
+        -Kamus hasil
+        -Daftar tren
+        +muatData(sumber: String)
+        +analisisTren(): Daftar
+        +buatWawasan(): Kamus
+        +eksporLaporan(): String
     }
     
-    class SalesData {
-        -Date date
-        -String item_id
-        -int quantity_sold
-        -float revenue
-        +addSalesRecord()
-        +getSalesHistory(): List
-        +calculateTrends(): Dict
+    class DataPenjualan {
+        -Tanggal tanggal
+        -String id_barang
+        -int jumlah_terjual
+        -float pendapatan
+        +tambahCatatanPenjualan()
+        +ambilRiwayatPenjualan(): Daftar
+        +hitungTren(): Kamus
     }
     
-    class User {
-        -String user_id
-        -String username
+    class Pengguna {
+        -String id_pengguna
+        -String nama_pengguna
         -String email
-        -String role
-        -List permissions
-        +authenticate(): boolean
-        +updateProfile()
-        +hasPermission(): boolean
+        -String peran
+        -Daftar izin
+        +otentikasi(): boolean
+        +perbaruiProfil()
+        +punyaIzin(): boolean
     }
     
-    class Report {
-        -String report_id
-        -String report_type
-        -Date generated_date
-        -String content
-        +generateReport()
-        +exportToPDF(): String
-        +scheduleReport()
+    class Laporan {
+        -String id_laporan
+        -String jenis_laporan
+        -Tanggal tanggal_dibuat
+        -String konten
+        +buatLaporan()
+        +eksporKePDF(): String
+        +jadwalkanLaporan()
     }
     
-    %% Relationships
-    ARIMAModel  SalesData : uses
-    Forecast  ARIMAModel : uses
-    Inventory  Forecast : has
-    DataAnalyzer  SalesData : analyzes
-    User  Report : generates
-    SalesData  Inventory : relates to
+    %% Hubungan
+    ModelARIMA  DataPenjualan : menggunakan
+    Ramalan  ModelARIMA : menggunakan
+    Inventaris  Ramalan : memiliki
+    PenganalisisData  DataPenjualan : menganalisis
+    Pengguna  Laporan : menghasilkan
+    DataPenjualan  Inventaris : berhubungan dengan
 ```
 
-### Class Descriptions
+## 📌 Deskripsi Kelas
 
-**Core Classes:**
+### 🏗️ Kelas Inti
 
-1. **ARIMAModel**: Implements the ARIMA time series forecasting algorithm
-   - Manages model parameters (p, d, q)
-   - Handles model training and prediction
-   - Provides model evaluation metrics
+1. **ARIMAModel**  
+   Mengimplementasikan algoritma peramalan deret waktu **ARIMA**  
+   - 🔧 Mengelola parameter model `(p, d, q)`  
+   - 🧠 Menangani pelatihan dan prediksi model  
+   - 📊 Menyediakan metrik evaluasi model  
 
-2. **Inventory**: Represents inventory items and stock management
-   - Tracks current stock levels and pricing
-   - Manages stock updates and calculations
-   - Categorizes different inventory items
+2. **Inventory**  
+   Merepresentasikan item inventaris dan manajemen stok  
+   - 📦 Melacak level stok saat ini dan harga  
+   - 🔄 Mengelola pembaruan stok dan perhitungan  
+   - 🗂️ Mengkategorikan berbagai item inventaris  
 
-3. **Forecast**: Manages prediction results and forecasting operations
-   - Stores predicted values and confidence intervals
-   - Generates forecasts using ARIMA models
-   - Provides accuracy metrics and result export
+3. **Forecast**  
+   Mengelola hasil prediksi dan operasi peramalan  
+   - 🔮 Menyimpan nilai prediksi dan interval kepercayaan  
+   - 📈 Menghasilkan prediksi menggunakan model ARIMA  
+   - ✅ Menyediakan metrik akurasi dan ekspor hasil  
 
-4. **SalesData**: Handles historical sales information
-   - Records daily sales transactions
-   - Calculates sales trends and patterns
-   - Provides data for model training
+4. **SalesData**  
+   Menangani informasi penjualan historis  
+   - 📝 Mencatat transaksi penjualan harian  
+   - 📊 Menghitung tren dan pola penjualan  
+   - 📚 Menyediakan data untuk pelatihan model  
 
-5. **DataAnalyzer**: Performs advanced data analysis and trend identification
-   - Loads data from various sources
-   - Generates business insights
-   - Creates analytical reports
+5. **DataAnalyzer**  
+   Melakukan analisis data lanjutan dan identifikasi tren  
+   - 📂 Memuat data dari berbagai sumber  
+   - 💡 Menghasilkan wawasan bisnis  
+   - 🧾 Membuat laporan analitis  
 
-6. **User**: Manages user authentication and authorization
-   - Handles user profiles and permissions
-   - Supports role-based access control
-   - Manages user authentication
+6. **User**  
+   Mengelola autentikasi dan otorisasi pengguna  
+   - 👤 Menangani profil dan izin pengguna  
+   - 🔐 Mendukung kontrol akses berbasis peran  
+   - ✅ Mengelola autentikasi pengguna  
 
-7. **Report**: Generates and manages various types of reports
-   - Creates inventory and sales reports
-   - Supports multiple export formats
-   - Handles scheduled report generation
+7. **Report**  
+   Menghasilkan dan mengelola berbagai jenis laporan  
+   - 🗒️ Membuat laporan inventaris dan penjualan  
+   - 📤 Mendukung berbagai format ekspor  
+   - ⏰ Menangani pembuatan laporan terjadwal  
 
 ---
 
