@@ -210,9 +210,9 @@ flutter build ios --release
 
 ---
 
-## Use Case Diagram
+## 🎯 Use Case Diagram
 
-The use case diagram shows the interactions between different actors and the ARIMA Analytics system:
+Diagram Use Case berikut menunjukkan interaksi antara aktor dan sistem **ARIMA Analytics**:
 
 ```mermaid title="Use Case Diagram: Sistem Analitik ARIMA" type="diagram"
 %% Use Case Diagram for ARIMA Analytics System
