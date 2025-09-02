@@ -122,8 +122,7 @@ gunicorn==21.2.0
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/ficrammanifur/arima-analytics-app.git
-cd arima-analytics-app
+git clone https://github.com/ficrammanifur/flutter-project/tree/main/PastryStock
 ```
 
 ### 2. Backend Setup
