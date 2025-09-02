@@ -214,59 +214,66 @@ flutter build ios --release
 
 The use case diagram shows the interactions between different actors and the ARIMA Analytics system:
 
-```mermaid
-graph TB
-    %% Actors
-    BO[👤 Bakery Owner]
-    DA[👤 Data Analyst] 
-    SA[👤 System Admin]
-    
-    %% System boundary
-    subgraph "ARIMA Analytics System"
-        UC1[View Inventory Forecast]
-        UC2[Generate Reports]
-        UC3[Input Sales Data]
-        UC4[Configure ARIMA Model]
-        UC5[Analyze Trends]
-        UC6[Manage User Accounts]
-        UC7[Export Data]
-        UC8[System Backup]
+```mermaid title="Use Case Diagram: Sistem Analitik ARIMA" type="diagram"
+%% Use Case Diagram for ARIMA Analytics System
+graph TD
+    PemilikToko["👤 Pemilik Toko"]
+    AnalisData["👤 Analis Data"]
+    AdminSistem["👤 Admin Sistem"]
+
+    subgraph "📊 Sistem Analitik ARIMA"
+        LihatRamalan(📈 Lihat Ramalan Inventaris)
+        BuatLaporan(📊 Buat Laporan)
+        MasukkanData(📝 Masukkan Data Penjualan)
+        KonfigurasiModel(⚙️ Konfigurasi Model ARIMA)
+        AnalisisTren(🔍 Analisis Tren)
+        KelolaAkun(👥 Kelola Akun Pengguna)
+        EksporData(📤 Ekspor Data)
+        CadangkanSistem(💾 Cadangkan Sistem)
     end
-    
-    %% Bakery Owner interactions
-    BO --> UC1
-    BO --> UC2
-    BO --> UC3
-    
-    %% Data Analyst interactions
-    DA --> UC4
-    DA --> UC5
-    DA --> UC7
-    
-    %% System Admin interactions
-    SA --> UC6
-    SA --> UC8
-    
-    %% Include relationships
-    UC2 -.->|<<include>>| UC4
+
+    PemilikToko --> LihatRamalan
+    PemilikToko --> BuatLaporan
+    PemilikToko --> MasukkanData
+
+    AnalisData --> KonfigurasiModel
+    AnalisData --> AnalisisTren
+    AnalisData --> EksporData
+
+    AdminSistem --> KelolaAkun
+    AdminSistem --> CadangkanSistem
+
+    BuatLaporan -- "<<include>>" --> KonfigurasiModel
+
+    style PemilikToko fill:#e1f5fe,stroke:#000
+    style AnalisData fill:#e1f5fe,stroke:#000
+    style AdminSistem fill:#e1f5fe,stroke:#000
+    style LihatRamalan fill:#fff3e0,stroke:#000
+    style BuatLaporan fill:#fff3e0,stroke:#000
+    style MasukkanData fill:#fff3e0,stroke:#000
+    style KonfigurasiModel fill:#e8f5e8,stroke:#000
+    style AnalisisTren fill:#e8f5e8,stroke:#000
+    style KelolaAkun fill:#e8f5e8,stroke:#000
+    style EksporData fill:#e8f5e8,stroke:#000
+    style CadangkanSistem fill:#e8f5e8,stroke:#000
 ```
 
-### Actors and Use Cases
+### Aktor dan Use Case
 
-**Actors:**
-- **Bakery Owner**: Primary user who manages inventory and views forecasts
-- **Data Analyst**: Technical user who configures models and analyzes trends
-- **System Administrator**: Manages user accounts and system maintenance
+**Aktor:**
+- **Pemilik Toko**: Pengguna utama yang mengelola inventaris dan melihat ramalan
+- **Analisis Data**: Pengguna teknis yang mengonfigurasi model dan menganalisis tren
+- **Admin Sistem**: Mengelola akun pengguna dan pemeliharaan sistem
 
 **Use Cases:**
-1. **View Inventory Forecast**: Display predicted inventory needs based on ARIMA model
-2. **Generate Reports**: Create comprehensive reports on inventory and sales trends
-3. **Input Sales Data**: Enter historical sales data for model training
-4. **Configure ARIMA Model**: Set up and tune ARIMA parameters (p, d, q)
-5. **Analyze Trends**: Perform statistical analysis on sales and inventory patterns
-6. **Manage User Accounts**: Handle user registration, permissions, and profiles
-7. **Export Data**: Export forecasts and reports in various formats
-8. **System Backup**: Maintain data integrity and system recovery
+1. **Lihat Ramalan Inventaris**: Menampilkan kebutuhan inventaris yang diprediksi berdasarkan model ARIMA
+2. **Buat Laporan**: Membuat laporan komprehensif tentang tren inventaris dan penjualan
+3. **Masukkan Data Penjualan**: Memasukkan data penjualan historis untuk pelatihan model
+4. **Konfigurasi Model ARIMA**: Menyiapkan dan menyetel parameter ARIMA (p, d, q)
+5. **Analisis Tren**: Melakukan analisis statistik pada pola penjualan dan inventaris
+6. **Kelola Akun Pengguna**: Mengelola pendaftaran pengguna, izin, dan profil
+7. **Ekspor Data**: Mengekspor ramalan dan laporan dalam berbagai format
+8. **SCadangkan Sistem**: Menjaga integritas data dan pemulihan sistem
 
 ## Class Diagram
 
