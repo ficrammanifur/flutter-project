@@ -22,6 +22,8 @@ Aplikasi mobile ARIMA Analytics adalah sistem prediksi bahan baku berbasis machi
 **ARIMA Analytics** dirancang khusus untuk UMKM bakery dan pastry yang membutuhkan sistem prediksi stok yang akurat dan mudah digunakan, membantu mengoptimalkan inventory management dan mengurangi waste.
 
 ---
+tambahkan class diagram dan use case diagram nya 
+dari README.md ini
 
 ## ✨ Fitur Utama
 
@@ -120,7 +122,7 @@ gunicorn==21.2.0
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/yourusername/arima-analytics-app.git
+git clone https://github.com/ficrammanifur/arima-analytics-app.git
 cd arima-analytics-app
 ```
 
@@ -205,6 +207,193 @@ flutter build apk --release
 # Build for iOS (macOS only)
 flutter build ios --release
 ```
+
+---
+
+## Use Case Diagram
+
+The use case diagram shows the interactions between different actors and the ARIMA Analytics system:
+
+```mermaid
+graph TB
+    %% Actors
+    BO[👤 Bakery Owner]
+    DA[👤 Data Analyst] 
+    SA[👤 System Admin]
+    
+    %% System boundary
+    subgraph "ARIMA Analytics System"
+        UC1[View Inventory Forecast]
+        UC2[Generate Reports]
+        UC3[Input Sales Data]
+        UC4[Configure ARIMA Model]
+        UC5[Analyze Trends]
+        UC6[Manage User Accounts]
+        UC7[Export Data]
+        UC8[System Backup]
+    end
+    
+    %% Bakery Owner interactions
+    BO  UC1
+    BO  UC2
+    BO  UC3
+    
+    %% Data Analyst interactions
+    DA  UC4
+    DA  UC5
+    DA  UC7
+    
+    %% System Admin interactions
+    SA  UC6
+    SA  UC8
+    
+    %% Include relationships
+    UC2 -.->|<<include>>| UC4
+```
+
+### Actors and Use Cases
+
+**Actors:**
+- **Bakery Owner**: Primary user who manages inventory and views forecasts
+- **Data Analyst**: Technical user who configures models and analyzes trends
+- **System Administrator**: Manages user accounts and system maintenance
+
+**Use Cases:**
+1. **View Inventory Forecast**: Display predicted inventory needs based on ARIMA model
+2. **Generate Reports**: Create comprehensive reports on inventory and sales trends
+3. **Input Sales Data**: Enter historical sales data for model training
+4. **Configure ARIMA Model**: Set up and tune ARIMA parameters (p, d, q)
+5. **Analyze Trends**: Perform statistical analysis on sales and inventory patterns
+6. **Manage User Accounts**: Handle user registration, permissions, and profiles
+7. **Export Data**: Export forecasts and reports in various formats
+8. **System Backup**: Maintain data integrity and system recovery
+
+## Class Diagram
+
+The class diagram illustrates the main classes and their relationships in the ARIMA Analytics system:
+
+```mermaid
+classDiagram
+    class ARIMAModel {
+        -int p
+        -int d
+        -int q
+        -ARIMAResults model
+        +fit(data: List)
+        +predict(steps: int)
+        +evaluate(): Dict
+    }
+    
+    class Inventory {
+        -String item_id
+        -String item_name
+        -int current_stock
+        -float unit_price
+        -String category
+        +updateStock(quantity: int)
+        +getStockLevel(): int
+        +calculateValue(): float
+    }
+    
+    class Forecast {
+        -String forecast_id
+        -String item_id
+        -List predicted_values
+        -Dict confidence_interval
+        +generateForecast()
+        +getAccuracy(): float
+        +exportResults(): Dict
+    }
+    
+    class DataAnalyzer {
+        -String data_source
+        -String analysis_type
+        -Dict results
+        -List trends
+        +loadData(source: String)
+        +analyzeTrends(): List
+        +generateInsights(): Dict
+        +exportReport(): String
+    }
+    
+    class SalesData {
+        -Date date
+        -String item_id
+        -int quantity_sold
+        -float revenue
+        +addSalesRecord()
+        +getSalesHistory(): List
+        +calculateTrends(): Dict
+    }
+    
+    class User {
+        -String user_id
+        -String username
+        -String email
+        -String role
+        -List permissions
+        +authenticate(): boolean
+        +updateProfile()
+        +hasPermission(): boolean
+    }
+    
+    class Report {
+        -String report_id
+        -String report_type
+        -Date generated_date
+        -String content
+        +generateReport()
+        +exportToPDF(): String
+        +scheduleReport()
+    }
+    
+    %% Relationships
+    ARIMAModel  SalesData : uses
+    Forecast  ARIMAModel : uses
+    Inventory  Forecast : has
+    DataAnalyzer  SalesData : analyzes
+    User  Report : generates
+    SalesData  Inventory : relates to
+```
+
+### Class Descriptions
+
+**Core Classes:**
+
+1. **ARIMAModel**: Implements the ARIMA time series forecasting algorithm
+   - Manages model parameters (p, d, q)
+   - Handles model training and prediction
+   - Provides model evaluation metrics
+
+2. **Inventory**: Represents inventory items and stock management
+   - Tracks current stock levels and pricing
+   - Manages stock updates and calculations
+   - Categorizes different inventory items
+
+3. **Forecast**: Manages prediction results and forecasting operations
+   - Stores predicted values and confidence intervals
+   - Generates forecasts using ARIMA models
+   - Provides accuracy metrics and result export
+
+4. **SalesData**: Handles historical sales information
+   - Records daily sales transactions
+   - Calculates sales trends and patterns
+   - Provides data for model training
+
+5. **DataAnalyzer**: Performs advanced data analysis and trend identification
+   - Loads data from various sources
+   - Generates business insights
+   - Creates analytical reports
+
+6. **User**: Manages user authentication and authorization
+   - Handles user profiles and permissions
+   - Supports role-based access control
+   - Manages user authentication
+
+7. **Report**: Generates and manages various types of reports
+   - Creates inventory and sales reports
+   - Supports multiple export formats
+   - Handles scheduled report generation
 
 ---
 
@@ -473,7 +662,6 @@ arima-analytics-app/
 │   │   │   └── logo.png
 │   │   └── icons/
 │   ├── android/                # Android configuration
-│   ├── ios/                    # iOS configuration
 │   └── pubspec.yaml           # Flutter dependencies
 ├── backend/                    # Python Flask API
 │   ├── app.py                 # Main Flask application
@@ -484,19 +672,7 @@ arima-analytics-app/
 │   │   ├── arima_model.py
 │   │   ├── sales_model.py
 │   │   └── inventory_model.py
-│   ├── services/              # Business logic
-│   │   ├── prediction_service.py
-│   │   ├── data_service.py
-│   │   └── analytics_service.py
-│   ├── utils/                 # Utilities
-│   │   ├── data_processor.py
-│   │   ├── validators.py
-│   │   └── helpers.py
-│   ├── tests/                 # Unit tests
-│   │   ├── test_api.py
-│   │   ├── test_models.py
-│   │   └── test_services.py
-│   └── migrations/            # Database migrations
+│   └── services/              # Business logic
 ├── docs/                      # Documentation
 │   ├── api_documentation.md
 │   ├── user_guide.md
@@ -571,23 +747,10 @@ arima-analytics-app/
    SECRET_KEY=your-super-secret-key-here
    PORT=5000
    
-   # Database Configuration
-   DATABASE_URL=sqlite:///arima_analytics.db
-   # For PostgreSQL: postgresql://user:password@localhost/dbname
-   # For MySQL: mysql://user:password@localhost/dbname
-   
    # Firebase Configuration (Optional)
    FIREBASE_PROJECT_ID=your-firebase-project
    FIREBASE_PRIVATE_KEY_ID=your-private-key-id
-   
-   # ARIMA Model Configuration
-   ARIMA_DEFAULT_ORDER=(1,1,1)
-   FORECAST_DAYS=30
-   CONFIDENCE_LEVEL=0.95
-   
-   # Cache Configuration
-   REDIS_URL=redis://localhost:6379/0
-   CACHE_TIMEOUT=3600
+
    ```
 
 2. **Database Setup**:
@@ -975,61 +1138,6 @@ class PredictionService {
 
 ---
 
-## 🌐 Deployment
-
-### Backend Deployment
-
-#### Using Gunicorn (Production)
-```bash
-# Install Gunicorn
-pip install gunicorn
-
-# Run with Gunicorn
-gunicorn -w 4 -b 0.0.0.0:5000 app:app
-
-# With configuration file
-gunicorn -c gunicorn.conf.py app:app
-```
-
-#### Docker Deployment
-```dockerfile
-# Dockerfile
-FROM python:3.9-slim
-
-WORKDIR /app
-
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
-EXPOSE 5000
-
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]
-```
-
-```bash
-# Build and run Docker container
-docker build -t arima-analytics-backend .
-docker run -p 5000:5000 -e FLASK_ENV=production arima-analytics-backend
-```
-
-#### Heroku Deployment
-```bash
-# Install Heroku CLI and login
-heroku login
-
-# Create Heroku app
-heroku create arima-analytics-api
-
-# Set environment variables
-heroku config:set FLASK_ENV=production
-heroku config:set SECRET_KEY=your-secret-key
-
-# Deploy
-git push heroku main
-```
-
 ### Frontend Deployment
 
 #### Android APK
@@ -1042,149 +1150,6 @@ flutter build appbundle --release
 
 # Install APK on device
 flutter install
-```
-
-#### iOS App
-```bash
-# Build for iOS (macOS only)
-flutter build ios --release
-
-# Open in Xcode for further configuration
-open ios/Runner.xcworkspace
-```
-
-#### Web Deployment
-```bash
-# Build for web
-flutter build web
-
-# Deploy to Firebase Hosting
-firebase deploy --only hosting
-
-# Deploy to Netlify
-# Upload build/web folder to Netlify
-```
-
----
-
-## 🧪 Testing
-
-### Backend Testing
-```bash
-# Install testing dependencies
-pip install pytest pytest-flask pytest-cov
-
-# Run all tests
-pytest
-
-# Run with coverage
-pytest --cov=app --cov-report=html
-
-# Run specific test file
-pytest tests/test_api.py
-
-# Run with verbose output
-pytest -v
-```
-
-#### Sample Test File
-```python
-# tests/test_api.py
-import pytest
-import json
-from app import app
-
-@pytest.fixture
-def client():
-    app.config['TESTING'] = True
-    with app.test_client() as client:
-        yield client
-
-def test_dashboard_endpoint(client):
-    """Test dashboard API endpoint"""
-    response = client.get('/api/dashboard')
-    assert response.status_code == 200
-    
-    data = json.loads(response.data)
-    assert data['success'] == True
-    assert 'data' in data
-
-def test_prediction_endpoint(client):
-    """Test prediction API endpoint"""
-    payload = {
-        'product_id': 'test_product',
-        'days': 7,
-        'confidence_level': 0.95
-    }
-    
-    response = client.post(
-        '/api/prediction/forecast',
-        data=json.dumps(payload),
-        content_type='application/json'
-    )
-    
-    assert response.status_code == 200
-    data = json.loads(response.data)
-    assert 'forecast' in data or 'error' in data
-```
-
-### Frontend Testing
-```bash
-# Run unit tests
-flutter test
-
-# Run integration tests
-flutter test integration_test/
-
-# Run tests with coverage
-flutter test --coverage
-
-# Generate coverage report
-genhtml coverage/lcov.info -o coverage/html
-```
-
-#### Sample Test File
-```dart
-// test/services/api_service_test.dart
-import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
-import 'package:mockito/mockito.dart';
-import 'package:arima_analytics/services/api_service.dart';
-
-class MockClient extends Mock implements http.Client {}
-
-void main() {
-  group('ApiService Tests', () {
-    late MockClient mockClient;
-    
-    setUp(() {
-      mockClient = MockClient();
-    });
-    
-    test('getDashboardData returns data on success', () async {
-      // Arrange
-      when(mockClient.get(any, headers: anyNamed('headers')))
-          .thenAnswer((_) async => http.Response(
-              '{"success": true, "data": {"sales": 100}}', 200));
-      
-      // Act
-      final result = await ApiService.getDashboardData();
-      
-      // Assert
-      expect(result['success'], true);
-      expect(result['data']['sales'], 100);
-    });
-    
-    test('getDashboardData handles error gracefully', () async {
-      // Arrange
-      when(mockClient.get(any, headers: anyNamed('headers')))
-          .thenAnswer((_) async => http.Response('Server Error', 500));
-      
-      // Act & Assert
-      expect(() => ApiService.getDashboardData(), throwsException);
-    });
-  });
-}
 ```
 
 ---
