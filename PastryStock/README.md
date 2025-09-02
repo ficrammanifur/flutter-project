@@ -234,18 +234,18 @@ graph TB
     end
     
     %% Bakery Owner interactions
-    BO  UC1
-    BO  UC2
-    BO  UC3
+    BO --> UC1
+    BO --> UC2
+    BO --> UC3
     
     %% Data Analyst interactions
-    DA  UC4
-    DA  UC5
-    DA  UC7
+    DA --> UC4
+    DA --> UC5
+    DA --> UC7
     
     %% System Admin interactions
-    SA  UC6
-    SA  UC8
+    SA --> UC6
+    SA --> UC8
     
     %% Include relationships
     UC2 -.->|<<include>>| UC4
