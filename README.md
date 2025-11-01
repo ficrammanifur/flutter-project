@@ -16,7 +16,7 @@
 
 <p align="center">
   <a href="#-applications-overview">Applications</a> •
-  <a href="#-quick-start">Quick Start</a> •
+  <a href="#which-guide-to-follow">Quick Start</a> •
   <a href="#-project-structure">Structure</a> •
   <a href="#-development-setup">Setup</a> •
   <a href="#-deployment">Deployment</a>
@@ -85,11 +85,13 @@ All apps use:
 - **Python Flask** for backend APIs
 - **Local/Firebase databases** for data persistence
 
-## Which Guide to Follow?
+## 🚀 Quick Start
 
-- **macOS**: See `01-macos-setup.md`
-- **Windows**: See `02-windows-setup.md`
-- **Linux**: See `03-linux-setup.md`
+### Which Guide to Follow?
+
+- **[macOS](./01-macos-setup.md)**
+- **[Windows](./02-windows-setup.md)**
+- **[Linux](./03-linux-setup.md)**
 
 ---
 
