@@ -109,5 +109,7 @@ All apps use:
 
 ---
 
+<p align="center">
 **Estimated Total Time**: 30–45 minutes (including downloads)  
 **Need Help?** 👉 [Jump to Troubleshooting Guide](./99-troubleshooting.md)
+</p>
