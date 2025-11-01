@@ -62,37 +62,37 @@ graph TB
     style B3 fill:#E91E63,stroke:#fff,color:#fff
 ```
 
-### 🛠 Development Setup
-## 1️⃣ Menggunakan Android Emulator
-I use Android Emulator for this Flutter project.
-Pastikan kamu sudah menginstall Android SDK dan membuat emulator menggunakan AVD Manager atau avdmanager CLI.
+# Flutter Multi-App Development Setup - Quick Start
 
-Jalankan emulator sebelum flutter run:
+This guide walks you through setting up the Flutter development environment from absolute zero to running all three applications on an Android Emulator.
 
-```bash
-emulator -avd MyEmulatorName
-```
-Panduan singkat membuat emulator via command line:
+## System Requirements
 
-```bash
-# Install system image Android 13
-sdkmanager "system-images;android-33;google_apis;x86_64"
+- **macOS 10.14+**, **Windows 10+**, or **Linux (Ubuntu 18.04+)**
+- **4GB RAM minimum** (8GB+ recommended)
+- **5GB free disk space** for Flutter SDK and emulator
+- **Internet connection** for downloading dependencies
 
-# Buat AVD
-avdmanager create avd -n MyEmulator -k "system-images;android-33;google_apis;x86_64" -d pixel
+## What You'll Be Setting Up
 
-# Jalankan emulator
-emulator -avd MyEmulator
-```
+This Flutter project contains **3 complete applications**:
+1. **Scheduling Assistant** (📅) - Schedule management app
+2. **PastryStock** (🧁) - Inventory and sales tracking  
+3. **Pilates Member** (🧘) - Membership management
 
-## 2️⃣ Konfigurasi gradle.properties
-Untuk memastikan performa build yang stabil pada emulator, gunakan konfigurasi berikut:
-```properties
-org.gradle.jvmargs=-Xmx1024m -XX:MaxMetaspaceSize=512m -XX:ReservedCodeCacheSize=256m -XX:+HeapDumpOnOutOfMemoryError
-android.useAndroidX=true
-android.enableJetifier=true
-```
-Letakkan file gradle.properties ini di:
-```bash
-<project-root>/android/gradle.properties
-```
+All apps use:
+- **Flutter** for mobile frontend
+- **Python Flask** for backend APIs
+- **Local/Firebase databases** for data persistence
+
+## Which Guide to Follow?
+
+- **macOS**: See `01-macos-setup.md`
+- **Windows**: See `02-windows-setup.md`
+- **Linux**: See `03-linux-setup.md`
+
+---
+
+**Estimated Total Time**: 30-45 minutes (including downloads)
+
+**Need Help?** Jump to `99-troubleshooting.md` if you encounter issues.
