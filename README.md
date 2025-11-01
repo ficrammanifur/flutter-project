@@ -16,7 +16,7 @@
 
 <p align="center">
   <a href="#-applications-overview">Applications</a> •
-  <a href="#which-guide-to-follow">Quick Start</a> •
+  <a href="#-quick-start">Quick Start</a> •
   <a href="#-project-structure">Structure</a> •
   <a href="#-development-setup">Setup</a> •
   <a href="#-deployment">Deployment</a>
@@ -73,12 +73,26 @@ This guide walks you through setting up the Flutter development environment from
 - **5GB free disk space** for Flutter SDK and emulator
 - **Internet connection** for downloading dependencies
 
+## 🧩 Applications Overview
+<a name="-applications-overview"></a>
+
 ## What You'll Be Setting Up
 
 This Flutter project contains **3 complete applications**:
-1. **Scheduling Assistant** (📅) - Schedule management app
-2. **PastryStock** (🧁) - Inventory and sales tracking  
-3. **Pilates Member** (🧘) - Membership management
+
+1. **📅 [Asistant Penjadwalan](./Asistant%20Penjadwalan/)**  
+   _Schedule management app_ — membantu pengguna mengatur jadwal dan pengingat secara otomatis menggunakan integrasi AI serta sinkronisasi dengan backend Flask dan database SQLite.
+
+2. **🧁 [PastryStock](./PastryStock/)**  
+   _Inventory and sales tracking_ — sistem stok dan penjualan pastry berbasis prediksi penjualan (ARIMA Model) dengan integrasi Flask API dan Firebase Realtime Database.
+
+3. **🧘 [Pilates Member](./Pilates%20Member/)**  
+   _Membership management_ — aplikasi manajemen member studio Pilates dengan integrasi ke Firebase Auth dan Realtime Database untuk registrasi, absensi, dan laporan aktivitas.
+
+---
+
+Each app has its own **frontend (`/lib`)** built with Flutter,  
+and a **dedicated backend Flask API** that handles data storage and processing.
 
 All apps use:
 - **Flutter** for mobile frontend
