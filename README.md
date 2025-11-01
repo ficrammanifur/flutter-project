@@ -110,6 +110,7 @@ All apps use:
 ---
 
 <p align="center">
-**Estimated Total Time**: 30–45 minutes (including downloads)  
-**Need Help?** 👉 [Jump to Troubleshooting Guide](./99-troubleshooting.md)
+  <strong>Estimated Total Time:</strong> 30–45 minutes (including downloads)<br>
+  <strong>Need Help?</strong> 👉 <a href="./99-troubleshooting.md">Jump to Troubleshooting Guide</a>
 </p>
+
